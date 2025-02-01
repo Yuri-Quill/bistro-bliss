@@ -1,0 +1,91 @@
+@use "./variables" as *;
+
+@mixin dm-sans($weight: 400, $size: 1rem) {
+	font-family: "DM Sans", serif;
+	font-size: $size;
+	font-weight: $weight;
+}
+
+@mixin playfair-display($weight: 400, $style: normal, $size: 1 rem) {
+	font-family: "Playfair Display", serif;
+	font-weight: $weight;
+	font-style: $style;
+	font-size: $size;
+}
+
+@mixin df-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+@mixin df-space-between {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+@mixin hover-active-animation($background-color: #dbdfd0) {
+	position: relative;
+	overflow: hidden;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	padding: 4px 16px;
+	border-radius: 2.125rem;
+
+	&::before {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-color: $background-color;
+		transform: scaleX(0);
+		transform-origin: right;
+		transition: transform 0.3s ease-in-out;
+		z-index: -1;
+	}
+
+	&:hover::before {
+		transform: scaleX(1);
+		transform-origin: left;
+	}
+}
+
+@mixin base-button-styles {
+	padding: 1.25rem 2rem;
+	border: 1.5px solid $btn-dark-border-color;
+	color: $btn-dark-color;
+	font-weight: 700;
+	line-height: 150%;
+	text-align: center;
+	transition: color 0.2s ease, background 0.2s ease, border 0.2s ease;
+	border-radius: 7.375rem;
+
+	&:hover {
+		background-color: $hover-background-color;
+		border-color: $hover-background-color;
+		color: $text-color;
+	}
+
+	&:active {
+		transform: scale(0.98);
+	}
+}
+
+
+@mixin active-button-styles {
+	padding: 1.25rem 2rem;
+	border: 1.5px solid $background-highlight-color;
+	color: $text-light;
+	background-color: $background-highlight-color;
+	border-radius: 7.375rem;
+
+	&:hover {
+		background-color: $hover-background-color;
+		border-color: $hover-background-color;
+		color: $text-color;
+	}
+}

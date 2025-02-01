@@ -1,0 +1,19 @@
+.btn,
+.btn-link {
+	@include base-button-styles;
+}
+
+.btn--active,
+.btn-link--active {
+	@include active-button-styles;
+}
+
+.btn:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+
+	&:hover {
+		background-color: inherit;
+		border-color: $btn-dark-border-color;
+	}
+}
