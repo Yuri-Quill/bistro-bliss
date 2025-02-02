@@ -78,7 +78,7 @@ const MainHeader = () => {
 					<Button
 						className={`${MAIN_HEADER_PREFIX}button`}
 						onClick={() => console.log("hello world")}
-						ariaLabel="Book a table"
+						aria-label="Book a table"
 						type="button"
 					>
 						Book A Table

@@ -19,7 +19,7 @@ const HeroSection = () => {
 						className={`${HERO_SECTION_PREFIX}btn`}
 						to="/book-a-table"
 						variant="active"
-						ariaLabel="Book A Table"
+						aria-label="Book A Table"
 					>
 						Book A Table
 					</ButtonLink>
@@ -27,7 +27,7 @@ const HeroSection = () => {
 					<ButtonLink
 						className={`${HERO_SECTION_PREFIX}btn`}
 						to="/menu"
-						ariaLabel="Explore Menu"
+						aria-label="Explore Menu"
 					>
 						Explore Menu
 					</ButtonLink>
