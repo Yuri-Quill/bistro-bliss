@@ -17,7 +17,7 @@ interface BrowseMenuCardProps {
 
 const BROWSE_MENU_PREFIX = "browse-menu__card";
 
-const getClass = (suffix: string) => `${BROWSE_MENU_PREFIX}__${suffix}`;
+const getClass = (suffix: string) => `${BROWSE_MENU_PREFIX}-${suffix}`;
 
 const BrowseMenuCard = ({ data, to, className, width,height }: BrowseMenuCardProps) => {
 	return (

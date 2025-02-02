@@ -6,6 +6,8 @@ import MainDishes from "../../assets/icons/browse-menu/main-dishes-icon.png";
 import Drinks from "../../assets/icons/browse-menu/drinks-icon.png";
 import Desserts from "../../assets/icons/browse-menu/desserts-icon.png";
 
+import "./BrowseMenuSection.scss";
+
 const BrowseMenuCategory = [
 	{
 		title: "Breakfast",
@@ -41,7 +43,7 @@ const BrowseMenuSection = () => {
 						<BrowseMenuCard
 							className="browse-menu__section-item"
 							data={category}
-							to={`/menu${category.title.toLowerCase()}`}
+							to={`/menu/${category.title.toLowerCase().replace(" ", "-")}`}
 							key={category.title}
 							width={100}
 							height={100}
