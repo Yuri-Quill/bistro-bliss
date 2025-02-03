@@ -1,82 +1,21 @@
-import {
-	BsTwitterX,
-	BsInstagram,
-	BsFacebook,
-	BsTelegram,
-	BsTelephone,
-	BsEnvelope,
-} from "react-icons/bs";
+import { contacts } from "../../../shared/data/contacts.data";
+import { socialMedias } from "../../../shared/data/social-medias.data";
+
 import Container from "../../Container/Container";
 
 import "./TopBar.scss";
 
-interface ContactsTypes {
-	name: string;
-	image: React.ReactElement;
-	info: string;
-	href: string;
-	description: string;
-}
-
-interface SocialMediasTypes {
-	name: string;
-	image: React.ReactElement;
-	url: string;
-	description: string;
-}
-
-const contacts: ContactsTypes[] = [
-	{
-		name: "Phone number",
-		image: <BsTelephone />,
-		info: "(414) 857 - 0107",
-		href: "tel:+14148570107",
-		description: "Phone number for reservations and take-out orders",
-	},
-	{
-		name: "Email address",
-		image: <BsEnvelope />,
-		info: "yummy@bistrobliss",
-		href: "mailto:yummy@bistrobliss",
-		description:
-			"Email us for take-out orders, reservations, or any other questions",
-	},
-];
-
-const socialMedias: SocialMediasTypes[] = [
-	{
-		name: "x",
-		image: <BsTwitterX />,
-		url: "https://x.com/",
-		description: "Visit x for more updates and information.",
-	},
-	{
-		name: "facebook",
-		image: <BsFacebook />,
-		url: "https://facebook.com/",
-		description: "Connect with us on Facebook for the latest news.",
-	},
-	{
-		name: "instagram",
-		image: <BsInstagram />,
-		url: "https://instagram.com/",
-		description: "Follow us on Instagram for photos and stories.",
-	},
-	{
-		name: "telegram",
-		image: <BsTelegram />,
-		url: "https://telegram.org/",
-		description: "Connect with us on Telegram for instant updates.",
-	},
-];
-
 const TopBar = () => {
+	const filteredContacts = contacts.filter(
+		(contact) => contact.name !== "Address"
+	);
+
 	return (
 		<section className="top-bar">
 			<Container>
 				<nav className="top-bar__nav top-bar__nav--contacts">
 					<ul className="top-bar__list top-bar__list--contacts">
-						{contacts.map((contact) => (
+						{filteredContacts.map((contact) => (
 							<li
 								className="top-bar__list-item top-bar__list-item--contacts"
 								key={contact.href}

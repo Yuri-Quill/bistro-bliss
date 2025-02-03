@@ -1,0 +1,45 @@
+.healthy-food__info-card {
+
+	padding: 50px;
+	border-radius: 12px;
+	background-color: $background-dark-gray;
+	max-width: clamp(250px, 25.625rem, 100%);
+
+	position: absolute;
+	bottom: -3.125rem;
+	right: -3.125rem;
+
+	&-title {
+		color: $white-color;
+
+		font-size: 24px;
+		font-weight: 700;
+		line-height: 125%; /*  */
+		letter-spacing: -0.72px;
+
+		margin-bottom: 45px;
+	}
+
+	&-list {
+		display: flex;
+		flex-direction: column;
+		gap: 25px;
+	}
+
+	&-item {
+		display: flex;
+		align-items: center;
+
+		gap: 20px;
+		& > svg {
+			color: $text-light;
+			min-width: 1.5rem;
+			min-height: 1.5rem;
+		}
+	}
+
+	&-link {
+		color: $text-light;
+		line-height: 150%;
+	}
+}
