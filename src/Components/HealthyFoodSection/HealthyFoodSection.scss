@@ -1,24 +1,27 @@
 .healthy-food {
 	&__section {
 		background-color: $background-healthy-food-section-color;
-		padding-top: 7.5rem;
-		padding-bottom: 10.625rem;
+		padding: 7.5rem 0 10.625rem;
 		margin-bottom: 7.5rem;
 
 		& > .container {
 			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-			gap: 155px;
+			grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+			gap: 80px;
+			align-items: center;
 		}
 	}
 
 	&__image-overlay {
-		width: 600px;
+		width: 100%;
+		max-width: 600px;
 		position: relative;
 	}
 
 	&__image {
+		width: 100%;
 		border-radius: 12px;
+		display: block;
 	}
 
 	&__text-wrap {
@@ -30,7 +33,6 @@
 
 	&__title {
 		color: $heading-color;
-
 		@include playfair-display(500, _, 3.4375rem);
 		line-height: 110%;
 		margin-bottom: 1.5rem;
