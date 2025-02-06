@@ -1,18 +1,19 @@
 import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
-import MainHeader from "../Components/Header/MainHeader";
+
+import Loading from "../Components/Loading/Loading";
 
 const MainLayout = () => {
 	return (
 		<>
-			<MainHeader />
-			<main>
-				<Suspense fallback={<p>Loading..</p>}>
+			<header className="header">header</header>
+			<main className="main">
+				<Suspense fallback={<Loading fullScreen />}>
 					<Outlet />
 				</Suspense>
 			</main>
 
-			<footer>footer</footer>
+			<footer className="footer">footer</footer>
 		</>
 	);
 };

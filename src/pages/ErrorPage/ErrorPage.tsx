@@ -1,25 +1,29 @@
-import { Link, useRouteError } from "react-router-dom";
+import { useRouteError, Link } from "react-router-dom";
+import { useEffect } from "react";
+
 import "./ErrorPage.scss";
 
-interface ErrorResponse {
-	status?: number;
-	statusText?: string;
-	message?: string;
+interface ErrorType {
+	status: number;
+	statusText: string;
+	message: string;
+	error: Error;
 }
 
 const ErrorPage = () => {
-	const error = useRouteError() as ErrorResponse;
+	const error = useRouteError() as ErrorType;
 
-	const status = error.status || 500;
-	const message = error.message || error.statusText || "An unexpected error occurred";
+	useEffect(() => {
+		console.error("Routing Error:", error);
+	}, [error]);
 
-	
 	return (
-		<section className="error">
-			<h1 className="error__title">Oops, something went wrong</h1>
-			<h2 className="error__subtitle">{status}</h2>
-			<p className="error__text">{message}</p>
-			<Link className="error__link" to="/">
+		<section className="error-page">
+			<h1 className="error-page__title">Oops! Something went wrong</h1>
+			<h4 className="error-page__status">Error {error.status}</h4>
+			<p className="error-page__message">{error.statusText || error.message}</p>
+
+			<Link to="/" className="error-page__home-link">
 				Return to Home
 			</Link>
 		</section>
