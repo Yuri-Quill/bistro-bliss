@@ -1,21 +1,11 @@
 import { useRouteError, Link } from "react-router-dom";
-import { useEffect } from "react";
+
+import IErrorPage from "../../shared/interfaces/errorPage.interface";
 
 import "./ErrorPage.scss";
 
-interface ErrorType {
-	status: number;
-	statusText: string;
-	message: string;
-	error: Error;
-}
-
 const ErrorPage = () => {
-	const error = useRouteError() as ErrorType;
-
-	useEffect(() => {
-		console.error("Routing Error:", error);
-	}, [error]);
+	const error = useRouteError() as IErrorPage;
 
 	return (
 		<section className="error-page">

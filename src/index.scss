@@ -1,4 +1,6 @@
-
 body {
 	@include dm-sans();
+	color: $heading-color;
+	line-height: 150%;
+	background-color: $white-color;
 }
