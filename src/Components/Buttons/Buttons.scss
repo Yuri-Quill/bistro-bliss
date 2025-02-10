@@ -1,0 +1,45 @@
+.button-link {
+	display: inline-flex;
+	text-align: center;
+
+	padding: clamp(0.5rem, 5vw, 0.75rem) clamp(0.75rem, 8vw, 1.5rem);
+
+	border-radius: 11.75rem;
+	border: 0.0938rem solid $heading-color;
+
+	font-weight: 700;
+
+	&--active {
+		color: $white-color;
+		background-color: $background-highlight-color;
+		border: 0.0938rem solid $background-highlight-color;
+	}
+
+	&--primary,
+	&--active {
+		padding: clamp(1rem, 5vw, 1.25rem) clamp(1.25rem, 8vw, 2rem);
+	}
+}
+
+.main-button {
+	display: flex;
+	text-align: center;
+
+	padding: clamp(0.5rem, 5vw, 0.75rem) clamp(0.75rem, 8vw, 1.5rem);
+
+	border-radius: 11.75rem;
+	border: 0.0938rem solid $heading-color;
+
+	font-weight: 700;
+
+	&--active {
+		color: $white-color;
+		background-color: $background-highlight-color;
+		border: 0.0938rem solid $background-highlight-color;
+	}
+
+	&--primary,
+	&--active {
+		padding: clamp(1rem, 5vw, 1.25rem) clamp(1.25rem, 8vw, 2rem);
+	}
+}
