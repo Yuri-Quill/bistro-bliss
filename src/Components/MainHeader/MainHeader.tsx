@@ -30,9 +30,9 @@ const MainHeader = () => {
 					<nav className="header-nav">
 						<ul className="header-list">
 							{mainMenu.map((item, index) => (
-								<li className="header-item" key={index}>
+								<li className="header-list__item" key={index}>
 									<Link
-										className="header-link"
+										className="header-list__link"
 										to={item.url}
 										aria-label={item.description}
 									>
@@ -43,7 +43,11 @@ const MainHeader = () => {
 						</ul>
 					</nav>
 
-					<ButtonLink to="/" aria-label="Book A Table" className="header-button">
+					<ButtonLink
+						to="/"
+						aria-label="Book A Table"
+						className="header-button__link"
+					>
 						Book A Table
 					</ButtonLink>
 				</Container>
