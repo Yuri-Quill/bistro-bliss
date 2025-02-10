@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 import Container from "../Container/Container";
 import TopBar from "../TopBar/TopBar";
@@ -31,13 +31,13 @@ const MainHeader = () => {
 						<ul className="header-list">
 							{mainMenu.map((item, index) => (
 								<li className="header-list__item" key={index}>
-									<Link
+									<NavLink
 										className="header-list__link"
 										to={item.url}
 										aria-label={item.description}
 									>
 										{item.name}
-									</Link>
+									</NavLink>
 								</li>
 							))}
 						</ul>

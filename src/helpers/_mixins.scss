@@ -25,44 +25,24 @@
 	justify-content: space-between;
 }
 
-@mixin hover-active-animation($background-color: #dbdfd0) {
-	position: relative;
-	overflow: hidden;
-	display: inline-flex;
-	justify-content: center;
+@mixin df-align-center {
+	display: flex;
 	align-items: center;
-	padding: 4px 16px;
-	border-radius: 2.125rem;
-
-	&::before {
-		content: "";
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background-color: $background-color;
-		transform: scaleX(0);
-		transform-origin: right;
-		transition: transform 0.3s ease-in-out;
-		z-index: -1;
-	}
-
-	&:hover::before {
-		transform: scaleX(1);
-		transform-origin: left;
-	}
 }
 
+
 @mixin base-button-styles {
-	padding: 1.25rem 2rem;
-	border: 1.5px solid $btn-dark-border-color;
-	color: $btn-dark-color;
-	font-weight: 700;
-	line-height: 150%;
+	display: inline-flex;
 	text-align: center;
-	transition: color 0.2s ease, background 0.2s ease, border 0.2s ease;
-	border-radius: 7.375rem;
+
+	padding: clamp(0.5rem, 5vw, 0.75rem) clamp(0.75rem, 8vw, 1.5rem);
+
+	border-radius: 11.75rem;
+	border: 0.0938rem solid $heading-color;
+
+	font-weight: 700;
+	color: $btn-dark-color;
+	transition: all 0.2s ease;
 
 	&:hover {
 		background-color: $hover-background-color;
@@ -71,21 +51,49 @@
 	}
 
 	&:active {
-		transform: scale(0.98);
+		transform: scale(0.95);
 	}
 }
 
-
 @mixin active-button-styles {
-	padding: 1.25rem 2rem;
-	border: 1.5px solid $background-highlight-color;
-	color: $text-light;
+	color: $white-color;
 	background-color: $background-highlight-color;
-	border-radius: 7.375rem;
+	border: 0.0938rem solid $background-highlight-color;
+
 
 	&:hover {
 		background-color: $hover-background-color;
 		border-color: $hover-background-color;
 		color: $text-color;
 	}
+
+	&:active {
+		transform: scale(0.95);
+	}
 }
+
+@mixin hover-active-menu {
+	
+	position: relative;
+	overflow: hidden;
+	&::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background: $hover-background-color;
+		transform: scale(0);
+		transition: transform 0.3s ease-out;
+		border-radius: inherit;
+		z-index: -1;
+	}
+
+	&:hover:not(.active)::after {
+		transform: scale(1);
+	}
+	&.active {
+		&::after {
+			transform: scale(1);
+		}
+	}
+}
+

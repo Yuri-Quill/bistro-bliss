@@ -1,0 +1,47 @@
+.header {
+	margin-bottom: 1.25rem;
+
+	& > .container {
+		@include df-space-between;
+	}
+
+	&-logo {
+		@include df-align-center;
+		gap: 0.875rem;
+
+		&__title {
+			@include playfair-display(600, italic, 2.6875rem);
+
+			color: $text-dark-gray;
+			line-height: 68.75%;
+			letter-spacing: -0.025rem;
+		}
+	}
+
+	&-list {
+		@include df-align-center;
+		gap: 0.5rem;
+
+		&__item {
+			transition: transform 0.2s ease;
+
+			&:active {
+				transform: scale(0.95);
+			}
+
+			& > .active {
+				background-color: $hover-background-color;
+			}
+		}
+
+		&__link {
+			color: $heading-color;
+			font-weight: 500;
+			padding: 0.25rem 1rem;
+			border-radius: 2.125rem;
+
+			@include hover-active-menu;
+		}
+	}
+}
+
