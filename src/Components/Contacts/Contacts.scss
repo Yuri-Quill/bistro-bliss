@@ -1,0 +1,11 @@
+.contacts-link {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	color: $text-light;
+
+	& > svg {
+		width: 1.125rem;
+		height: 1.125rem;
+	}
+}

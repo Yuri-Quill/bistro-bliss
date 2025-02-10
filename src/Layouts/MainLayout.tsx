@@ -2,11 +2,12 @@ import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 
 import Loading from "../Components/Loading/Loading";
+import MainHeader from "../Components/MainHeader/MainHeader";
 
 const MainLayout = () => {
 	return (
 		<>
-			<header className="header">header</header>
+			<MainHeader />
 			<main className="main">
 				<Suspense fallback={<Loading fullScreen />}>
 					<Outlet />

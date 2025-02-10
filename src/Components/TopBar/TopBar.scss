@@ -1,0 +1,20 @@
+.top-bar {
+	width: 100%;
+	padding: 0.6875rem 0;
+	background-color: $background-dark-gray;
+	margin-bottom: 1.8125rem;
+
+	& > .container {
+		@include df-space-between;
+	}
+
+	&__contacts-list {
+		@include df-center;
+		gap: 1.5625rem;
+	}
+
+	&__social-media-list {
+		@include df-center;
+		gap: 0.25rem;
+	}
+}
