@@ -23,25 +23,17 @@
 		gap: 0.5rem;
 
 		&__item {
-			transition: transform 0.2s ease;
-
 			&:active {
-				transform: scale(0.95);
-			}
-
-			& > .active {
-				background-color: $hover-background-color;
+				transform: scale(0.98);
 			}
 		}
-
 		&__link {
+			@include hover-active-menu;
 			color: $heading-color;
 			font-weight: 500;
 			padding: 0.25rem 1rem;
 			border-radius: 2.125rem;
-
-			@include hover-active-menu;
+			transition: background-color 0.3s ease;
 		}
 	}
 }
-
