@@ -1,0 +1,18 @@
+$featured-menu-title-font-size: clamp(2.5rem, 5vw, 3.4375rem);
+
+.featured-menu {
+	text-align: center;
+
+	&__title {
+		@include playfair-display(500, _, $featured-menu-title-font-size);
+		line-height: 110%;
+		margin-bottom: clamp(2rem, 5vw, 4rem);
+	}
+    
+	&__list {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(16.25rem, 1fr));
+		gap: 1.5rem;
+		margin-bottom: clamp(4rem, 8vw, 7.5rem);
+	}
+}

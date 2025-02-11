@@ -1,0 +1,38 @@
+.hero {
+	display: flex;
+	width: 100%;
+	height: 100vh;
+	background: url("../../assets/hero-section-bg.png");
+	margin-bottom: 5.75rem;
+
+	& > .container {
+		@include df-center;
+		flex-direction: column;
+
+		text-align: center;
+	}
+
+	&-title {
+		max-width: 37.5rem;
+		@include playfair-display;
+		font-size: clamp(3.125rem, 10vw, 6.25rem);
+		line-height: 96%;
+		margin-bottom: clamp(1.5rem, 5vw, 2rem);
+	}
+
+	&-text {
+		max-width: 32.5rem;
+		font-size: clamp(0.875rem, 5vw, 1.25rem);
+		line-height: 160%;
+		margin-bottom: clamp(1.25rem, 5vw, 2.5rem);
+	}
+
+	&-btn__wrap {
+		display: flex;
+		gap: 1rem;
+
+		@media (max-width: 380px) {
+			flex-direction: column;
+		}
+	}
+}

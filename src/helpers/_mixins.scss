@@ -38,6 +38,7 @@
 
 @mixin base-button-styles {
 	display: inline-flex;
+	justify-content: center;
 	text-align: center;
 
 	padding: clamp(0.5rem, 5vw, 0.75rem) clamp(0.75rem, 8vw, 1.5rem);

@@ -14,12 +14,12 @@ const SocialMedia = ({ isActive,className }: SocialMediaProps) => {
 		<ul
 			className={classNames(`${className}__social-media-list social-media__list`, { "social-media--active": isActive })}
 		>
-			{socialMedia.map((item, index) => (
+			{socialMedia.map((item) => (
 				<li
 					className={classNames(`${className}__item  social-media__item`, {
 						"social-media__item--active": isActive,
 					})}
-					key={index}
+					key={item.id}
 				>
 					<a
 						className={classNames(`${className}__link social-media__link`, {

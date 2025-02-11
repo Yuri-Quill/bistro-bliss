@@ -29,8 +29,8 @@ const MainHeader = () => {
 
 					<nav className="header-nav">
 						<ul className="header-list">
-							{mainMenu.map((item, index) => (
-								<li className="header-list__item" key={index}>
+							{mainMenu.map((item) => (
+								<li className="header-list__item" key={item.id}>
 									<NavLink
 										className="header-list__link"
 										to={item.url}

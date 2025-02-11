@@ -24,13 +24,16 @@ const Contacts = ({ filterByName, className }: ContactsProps) => {
 				}
 
 				return contactName !== filterByName.toLowerCase();
-		  })
+			})
 		: contacts;
 
 	return (
 		<ul className={`${className}__contacts-list contacts-list`}>
-			{filteredContacts.map((contact, index) => (
-				<li className={`${className}__contacts-item contacts-item`} key={index}>
+			{filteredContacts.map((contact) => (
+				<li
+					className={`${className}__contacts-item contacts-item`}
+					key={contact.id}
+				>
 					<a
 						className={`${className}__contacts-link contacts-link`}
 						href={contact.url}
