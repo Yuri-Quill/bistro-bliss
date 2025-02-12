@@ -3,6 +3,7 @@ import Hero from "../../Components/Hero/Hero";
 import MeetUs from "../../Components/MeetUs/MeetUs";
 import OurDelivery from "../../Components/OurDelivery/OurDelivery";
 import OurServices from "../../Components/OurServices/OurServices";
+import Testimonials from "../../Components/Testimonials/Testimonials";
 
 import MeetUsKebab from '../../assets/meet-us-section/meet-us-kebab.png'
 
@@ -14,6 +15,7 @@ const HomePage = () => {
 			<MeetUs image={MeetUsKebab}/>
 			<OurServices/>
 			<OurDelivery/>
+			<Testimonials/>
 		</>
 	);
 };
