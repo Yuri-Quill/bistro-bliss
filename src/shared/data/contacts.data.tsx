@@ -2,7 +2,7 @@ import { TbMail, TbPhone, TbMapPin2 } from "react-icons/tb";
 
 import { IContacts } from "../interfaces/Contacts.interface";
 
-export const contacts: IContacts[] = [
+export const contactsData: IContacts[] = [
 	{
 		id: 1,
 		name: "Phone number",

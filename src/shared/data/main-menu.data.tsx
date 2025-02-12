@@ -1,6 +1,6 @@
 import { IMainMenu } from "../interfaces/MainMenu.interface";
 
-export const mainMenu: IMainMenu[] = [
+export const mainMenuData: IMainMenu[] = [
 	{
 		id: 1,
 		name: "Home",
@@ -14,7 +14,7 @@ export const mainMenu: IMainMenu[] = [
 		description: "Learn more about our restaurant",
 	},
 	{
-		id: 5,
+		id: 3,
 		name: "Menu",
 		url: "/menu",
 		description: "Browse our delicious menu items",

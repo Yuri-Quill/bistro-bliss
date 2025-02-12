@@ -7,7 +7,7 @@ import {
 
 import { ISocialMedia } from "../interfaces/SocialMedia.interface";
 
-export const socialMedia: ISocialMedia[] = [
+export const socialMediaData: ISocialMedia[] = [
 	{
 		id: 1,
 		platform: "X",

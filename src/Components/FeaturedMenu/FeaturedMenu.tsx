@@ -13,7 +13,7 @@ const FeaturedMenu = () => {
 
 				<ul className="featured-menu__list">
 					{featuredMenuData.map((item) => (
-						<FeaturedMenuCard data={item} className="featured-menu__list-item" />
+						<FeaturedMenuCard data={item} className="featured-menu__list-item" key={item.id} />
 					))}
 				</ul>
 			</Container>

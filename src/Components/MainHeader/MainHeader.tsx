@@ -6,7 +6,7 @@ import { ButtonLink } from "../Buttons/Buttons";
 
 import HeaderLogo from "../../assets/bistro-bliss-logo.svg";
 
-import { mainMenu } from "../../shared/data/main-menu.data";
+import { mainMenuData } from "../../shared/data/main-menu.data";
 
 import "./MainHeader.scss";
 
@@ -29,7 +29,7 @@ const MainHeader = () => {
 
 					<nav className="header-nav">
 						<ul className="header-list">
-							{mainMenu.map((item) => (
+							{mainMenuData.map((item) => (
 								<li className="header-list__item" key={item.id}>
 									<NavLink
 										className="header-list__link"
