@@ -27,7 +27,7 @@ const FeaturedMenuCard = ({ data, className }: FeaturedMenuCardProps) => {
 
 			<Link
 				className="featured-menu__card-link"
-				to={`/menu/${data.name.toLowerCase()}`}
+				to={`/menu/${data.url}`}
 			>
 				Explore Menu
 			</Link>

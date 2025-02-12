@@ -3,4 +3,5 @@ export interface IFeaturedMenu {
 	name: string;
 	body: string;
 	image: string;
+	url:string
 }
