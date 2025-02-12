@@ -6,7 +6,7 @@
 	&__title {
 		max-width: 42.1875rem;
 		@include playfair-display;
-		font-size: clamp(2.838rem, 2.643rem + 0.96vw, 3.438rem);
+		font-size: clamp(2.813rem, 2.63rem + 0.976vw, 3.438rem);
 		font-weight: 500;
 		line-height: 110%;
 		margin-bottom: clamp(2rem, 1.35rem + 3.2vw, 4rem);
