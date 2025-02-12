@@ -1,0 +1,28 @@
+.our-services__card {
+
+	&-img {
+		width: 19.125rem;
+		height: 20rem;
+		border-radius: 0.75rem;
+		margin-bottom: 1.875rem;
+		object-fit: cover;
+	}
+
+	&-caption {
+		max-width: 17.5rem;
+	}
+
+	&-title {
+
+		font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+		font-weight: 700;
+		line-height: 125%;
+		letter-spacing: -0.045rem;
+		margin-bottom: 0.9375rem;
+	}
+
+	&-text {
+		color: $text-color;
+	}
+}
+
