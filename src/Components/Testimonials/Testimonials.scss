@@ -1,0 +1,22 @@
+.testimonials {
+	margin-bottom: clamp(3.125rem, 1.57rem + 8.293vw, 8.438rem);
+
+	& > .container {
+		@include df-center;
+		flex-direction: column;
+		gap: clamp(2.125rem, 1.576rem + 2.927vw, 4rem);
+	}
+
+	&__title {
+		@include playfair-display;
+		font-size: clamp(2.813rem, 2.63rem + 0.976vw, 3.438rem);
+		font-weight: 500;
+		line-height: 110%;
+	}
+
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+}

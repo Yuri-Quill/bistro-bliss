@@ -6,7 +6,7 @@ interface OurServicesCardProps {
 	className?: string;
 }
 
-const OurServicesCard = ({ data, className }: OurServicesCardProps) => {
+const OurServicesCard = ({ data, className="" }: OurServicesCardProps) => {
 	return (
 		<li className={`${className} our-services__item`}>
 			<figure className="our-services__card">

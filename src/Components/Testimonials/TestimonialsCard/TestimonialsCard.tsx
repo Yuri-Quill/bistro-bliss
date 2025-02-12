@@ -22,6 +22,8 @@ const TestimonialsCard = ({ data, className = "" }: TestimonialsCardProps) => {
 					className="testimonials-card__image"
 					src={data.image}
 					alt={`Photo of ${data.name}, a satisfied customer from ${data.address}`}
+					width={70}
+					height={70}
 				/>
 				<figcaption className="testimonials-card__author">
 					<h4 className="testimonials-card__name">{data.name}</h4>

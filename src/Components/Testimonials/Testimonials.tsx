@@ -9,6 +9,7 @@ const Testimonials = () => {
 	return (
 		<section className="testimonials">
 			<Container>
+				<h2 className="testimonials__title">What Our Customers Say</h2>
 				<ul className="testimonials__list">
 					{testimonialsData.map((item) => (
 						<TestimonialsCard
