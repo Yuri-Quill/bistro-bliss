@@ -1,0 +1,51 @@
+.recipe-card {
+
+	align-self: stretch;
+	border-radius: 0.75rem;
+	background: $white-color;
+	box-shadow: $card-box-shadow;
+&__figure{
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+	&__image {
+		object-fit: cover;
+		width: 100%;
+		border-top-left-radius: 0.75rem;
+		border-top-right-radius: 0.75rem;
+		height: 200px;
+	}
+
+	&__caption {
+		display: flex;
+		flex-direction: column;
+		gap: 0.9375rem;
+		padding: clamp(1.563rem, 1.38rem + 0.976vw, 1.888rem);
+		margin-top: auto;
+	}
+
+	&__date {
+		font-weight: 500;
+		color: $date-color;
+	}
+
+	&__title {
+		font-size: 20px;
+		font-weight: 500;
+		line-height: 130%;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		display: box;
+		box-orient: vertical;
+		line-clamp: 2;
+		overflow: hidden;
+	}
+
+	&__description {
+		display: none;
+		color: $text-color;
+	}
+}
+

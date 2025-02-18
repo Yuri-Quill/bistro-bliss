@@ -15,6 +15,10 @@ const recipeSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
+	image: {
+		type: String,
+		required: true,
+	},
 	article: {
 		type: String,
 		required: true,

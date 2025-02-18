@@ -4,6 +4,7 @@ import MeetUs from "../../Components/MeetUs/MeetUs";
 import OurDelivery from "../../Components/OurDelivery/OurDelivery";
 import OurServices from "../../Components/OurServices/OurServices";
 import Testimonials from "../../Components/Testimonials/Testimonials";
+import RecipesArticles from "../../Components/RecipesArticles/RecipesArticles";
 
 import MeetUsKebab from '../../assets/meet-us-section/meet-us-kebab.png'
 
@@ -16,6 +17,7 @@ const HomePage = () => {
 			<OurServices/>
 			<OurDelivery/>
 			<Testimonials/>
+			<RecipesArticles/>
 		</>
 	);
 };

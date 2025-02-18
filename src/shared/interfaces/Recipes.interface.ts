@@ -1,12 +1,14 @@
 export interface IRecipes {
-	id: number | string;
+	_id: string; 
+	id?: number; 
 	title: string;
 	description: string;
 	article: string;
 	image: string;
-	prepTime: string;
-	cookTime: string;
-	servings: number | string;
+	prepTime: string | number;
+	cookTime: string | number;
+	servings: string | number;
 	ingredients: string[];
 	instructions: string[];
+	updatedAt: string | Date;
 }

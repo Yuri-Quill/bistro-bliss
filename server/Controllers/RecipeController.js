@@ -82,20 +82,27 @@ export const deleteRecipe = async (req, res) => {
 // Bulk create recipes
 export const bulkCreateRecipes = async (req, res) => {
 	try {
+		// Принудительно конвертируем объект в массив, если он пришел неправильно
 		const data = Array.isArray(req.body) ? req.body : Object.values(req.body);
 
-		if (!Array.isArray(data) || data.length === 0) {
+		// console.log("Parsed body:", data);
+		// console.log("Is Array (after fix):", Array.isArray(data));
+
+		if (!Array.isArray(data)) {
 			return res
 				.status(400)
 				.json({ message: "Request body must be an array of recipes" });
 		}
 
-		const recipesWithIds = data.map((recipe, index) => {
-			if (!recipe.name || !recipe.ingredients) {
-				throw new Error(`Recipe #${index + 1} must have a name and ingredients`);
-			}
-			return { ...recipe, id: index + 1 }; // Или логику с автоинкрементом
-		});
+		// Найти последний ID
+		const highestRecipe = await Recipe.findOne().sort({ id: -1 });
+		let nextId = highestRecipe ? highestRecipe.id + 1 : 1;
+
+		// Добавить ID к каждому рецепту
+		const recipesWithIds = data.map((recipe) => ({
+			...recipe,
+			id: nextId++,
+		}));
 
 		const savedRecipes = await Recipe.insertMany(recipesWithIds);
 		res.status(201).json(savedRecipes);
