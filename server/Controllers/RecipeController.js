@@ -1,5 +1,4 @@
 import Recipe from "../Models/RecipeModel.js";
-
 // Get all recipes
 export const getRecipes = async (req, res) => {
 	try {
@@ -15,7 +14,7 @@ export const getRecipes = async (req, res) => {
 // Get single recipe by ID
 export const getRecipeById = async (req, res) => {
 	try {
-		const recipe = await Recipe.findOne({ id: req.params.id });
+		const recipe = await Recipe.findOne({ _id: req.params.id });
 		if (!recipe) {
 			return res.status(404).json({ message: "Recipe not found" });
 		}
@@ -30,15 +29,9 @@ export const getRecipeById = async (req, res) => {
 // Create new recipe
 export const createRecipe = async (req, res) => {
 	try {
-		// Find the highest existing ID and increment by 1
-		const highestRecipe = await Recipe.findOne().sort({ id: -1 });
-		const nextId = highestRecipe ? highestRecipe.id + 1 : 1;
-
 		const recipe = new Recipe({
-			id: nextId,
 			...req.body,
 		});
-
 		const savedRecipe = await recipe.save();
 		res.status(201).json(savedRecipe);
 	} catch (error) {
@@ -52,7 +45,7 @@ export const createRecipe = async (req, res) => {
 export const updateRecipe = async (req, res) => {
 	try {
 		const recipe = await Recipe.findOneAndUpdate(
-			{ id: req.params.id },
+			{ _id: req.params.id },
 			req.body,
 			{ new: true, runValidators: true }
 		);
@@ -72,7 +65,7 @@ export const updateRecipe = async (req, res) => {
 // Delete recipe
 export const deleteRecipe = async (req, res) => {
 	try {
-		const recipe = await Recipe.findOneAndDelete({ id: req.params.id });
+		const recipe = await Recipe.findOneAndDelete({ _id: req.params.id });
 
 		if (!recipe) {
 			return res.status(404).json({ message: "Recipe not found" });
@@ -89,27 +82,20 @@ export const deleteRecipe = async (req, res) => {
 // Bulk create recipes
 export const bulkCreateRecipes = async (req, res) => {
 	try {
-		// Принудительно конвертируем объект в массив, если он пришел неправильно
 		const data = Array.isArray(req.body) ? req.body : Object.values(req.body);
 
-		// console.log("Parsed body:", data);
-		// console.log("Is Array (after fix):", Array.isArray(data));
-
-		if (!Array.isArray(data)) {
+		if (!Array.isArray(data) || data.length === 0) {
 			return res
 				.status(400)
 				.json({ message: "Request body must be an array of recipes" });
 		}
 
-		// Найти последний ID
-		const highestRecipe = await Recipe.findOne().sort({ id: -1 });
-		let nextId = highestRecipe ? highestRecipe.id + 1 : 1;
-
-		// Добавить ID к каждому рецепту
-		const recipesWithIds = data.map((recipe) => ({
-			...recipe,
-			id: nextId++,
-		}));
+		const recipesWithIds = data.map((recipe, index) => {
+			if (!recipe.name || !recipe.ingredients) {
+				throw new Error(`Recipe #${index + 1} must have a name and ingredients`);
+			}
+			return { ...recipe, id: index + 1 }; // Или логику с автоинкрементом
+		});
 
 		const savedRecipes = await Recipe.insertMany(recipesWithIds);
 		res.status(201).json(savedRecipes);

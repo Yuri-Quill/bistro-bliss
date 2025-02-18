@@ -1,7 +1,7 @@
 import axios from "axios";
 import { IRecipes } from "../../shared/interfaces/Recipes.interface";
 
-const API_URL = "http:localhost:5000/api/recipes";
+const API_URL = "http://localhost:5000/api/recipes";
 
 // Получение всех рецептов
 export const fetchRecipes = async (): Promise<IRecipes[]> => {

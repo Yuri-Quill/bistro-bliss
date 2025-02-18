@@ -5,9 +5,10 @@ import MainLayout from "./Layouts/MainLayout";
 import HomePage from "./pages/HomePage/HomePage";
 
 
+
 const AboutPage = lazy(() => import("./pages/AboutPage/AboutPage"));
 const MenuPage = lazy(() => import("./pages/MenuPage/MenuPage"));
-const PagesPage = lazy(() => import("./pages/PagesPage/PagesPage"));
+const RecipesPage = lazy(() => import("./pages/RecipesPage/RecipesPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage/ContactPage"));
 
 const ErrorPage = lazy(() => import("./pages/ErrorPage/ErrorPage"));
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
 		path: "/",
 		element: <MainLayout />,
 		errorElement: <ErrorPage />,
+
 
 		children: [
 			{
@@ -32,8 +34,8 @@ const router = createBrowserRouter([
 				element: <MenuPage />,
 			},
 			{
-				path: "/pages",
-				element: <PagesPage />,
+				path: "/recipes",
+				element: <RecipesPage />,
 			},
 			{
 				path: "/contact",

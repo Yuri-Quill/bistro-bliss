@@ -21,9 +21,9 @@ export const mainMenuData: IMainMenu[] = [
 	},
 	{
 		id: 4,
-		name: "Pages",
-		url: "/pages",
-		description: "Explore our website",
+		name: "Recipes",
+		url: "/recipes",
+		description: "Explore our Recipes",
 	},
 	{
 		id: 5,

@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
+import recipesReducer from "../features/recipes/RecipesSlice";
 
 export const store = configureStore({
-	reducer: {},
+	reducer: {
+		recipes: recipesReducer
+	},
 });
 
 // Выведение типов `RootState` и `AppDispatch` из хранилища
