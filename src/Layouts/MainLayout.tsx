@@ -4,6 +4,8 @@ import { useAppDispatch } from "../app/hooks";
 
 import Loading from "../Components/Loading/Loading";
 import MainHeader from "../Components/MainHeader/MainHeader";
+import MainFooter from "../Components/MainFooter/MainFooter";
+
 import { fetchRecipesAsync } from "../features/recipes/RecipesSlice";
 
 const MainLayout = () => {
@@ -16,13 +18,14 @@ const MainLayout = () => {
 	return (
 		<>
 			<MainHeader />
+
 			<main className="main">
 				<Suspense fallback={<Loading fullScreen />}>
 					<Outlet />
 				</Suspense>
 			</main>
 
-			<footer className="footer">footer</footer>
+			<MainFooter />
 		</>
 	);
 };
