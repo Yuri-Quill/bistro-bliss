@@ -3,13 +3,15 @@ import ContactsCard from "../Contacts/ContactsCard/ContactsCard";
 import Container from "../Container/Container";
 import "./MeetUs.scss";
 
+
 interface MeetUpProps {
 	image: string;
+	className:string
 }
 
-const MeetUs = ({ image }: MeetUpProps) => {
+const MeetUs = ({ image, className }: MeetUpProps) => {
 	return (
-		<section className="meet-us">
+		<section className={`${className} meet-us`}>
 			<Container>
 				<article className="meet-us__article">
 					<img
