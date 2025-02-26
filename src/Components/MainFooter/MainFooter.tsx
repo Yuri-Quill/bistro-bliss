@@ -27,6 +27,7 @@ const MainFooter = () => {
 								className="footer-social-media"
 								data={item}
 								isActive={true}
+								key={item.id}
 							/>
 						))}
 					</ul>
