@@ -1,6 +1,6 @@
 import { Suspense, useEffect } from "react";
 import { Outlet } from "react-router-dom";
-import { useAppDispatch } from "../app/hooks";
+import { useAppDispatch, useAppSelector } from '../app/hooks';
 
 import Loading from "../Components/Loading/Loading";
 import MainHeader from "../Components/MainHeader/MainHeader";
@@ -10,10 +10,11 @@ import { fetchRecipesAsync } from "../features/recipes/RecipesSlice";
 
 const MainLayout = () => {
 	const dispatch = useAppDispatch();
+	const {currentPage} = useAppSelector((state)=> state.recipes)
 
 	useEffect(() => {
-		dispatch(fetchRecipesAsync());
-	}, [dispatch]);
+		dispatch(fetchRecipesAsync({ page: currentPage, limit: 10 }));
+	}, [dispatch, currentPage]);
 
 	return (
 		<>

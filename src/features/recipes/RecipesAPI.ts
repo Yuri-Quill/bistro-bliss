@@ -4,9 +4,12 @@ import { IRecipes } from "../../shared/interfaces/Recipes.interface";
 const API_URL = "http://localhost:5000/api/recipes";
 
 // Получение всех рецептов
-export const fetchRecipes = async (): Promise<IRecipes[]> => {
-	const response = await axios.get(API_URL);
-	return response.data;
+export const fetchRecipes = async (
+	page: number,
+	limit: number
+): Promise<{ recipes: IRecipes[]; total: number; pages: number }> => {
+	const response = await axios.get(`${API_URL}?page=${page}&limit=${limit}`);
+	return response.data; // Ожидаем, что сервер возвращает { recipes, total, pages }
 };
 
 // export const fetchRecipes = async () => {

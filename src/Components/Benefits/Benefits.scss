@@ -1,0 +1,8 @@
+.benefits {
+	margin-bottom: clamp(1.5625rem, 5vw, 5rem);
+
+	&-list {
+		display: flex;
+		justify-content: space-between;
+	}
+}
