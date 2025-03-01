@@ -10,11 +10,11 @@ import { fetchRecipesAsync } from "../features/recipes/RecipesSlice";
 
 const MainLayout = () => {
 	const dispatch = useAppDispatch();
-	const {currentPage} = useAppSelector((state)=> state.recipes)
+	const {currentPage, limit} = useAppSelector((state)=> state.recipes)
 
 	useEffect(() => {
-		dispatch(fetchRecipesAsync({ page: currentPage, limit: 10 }));
-	}, [dispatch, currentPage]);
+		dispatch(fetchRecipesAsync({ page: currentPage, limit: limit }));
+	}, [dispatch, currentPage, limit]);
 
 	return (
 		<>
