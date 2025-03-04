@@ -44,7 +44,7 @@ const MainHeader = () => {
 					</nav>
 
 					<ButtonLink
-						to="/"
+						to="/reservation"
 						aria-label="Book A Table"
 						className="header-button__link"
 					>

@@ -1,0 +1,32 @@
+.reservation {
+	@include df-center;
+	flex-direction: column;
+	text-align: center;
+	padding-top: clamp(40px, 8.556vw, 74px);
+
+	&::after {
+		content: "";
+		display: block;
+		background-image: url("../../assets/reservation/map.png");
+		width: 100%;
+		height: 100vh;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+
+	&__title {
+		@include playfair-display;
+		font-size: clamp(40px, 8.556vw, 100px);
+		line-height: 96%;
+		margin-bottom: 24px;
+	}
+
+	&__text {
+		color: $subtext-color;
+		font-size: clamp(0.875rem, 0.8018rem + 0.3902vw, 1.125rem);
+		line-height: 155.556%;
+		max-width: 34.0625rem;
+		margin-bottom: clamp(9rem, 5.4878rem + 18.7317vw, 21rem)
+	}
+}

@@ -4,12 +4,11 @@ import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "./Layouts/MainLayout";
 import HomePage from "./pages/HomePage/HomePage";
 
-
-
 const AboutPage = lazy(() => import("./pages/AboutPage/AboutPage"));
 const MenuPage = lazy(() => import("./pages/MenuPage/MenuPage"));
 const RecipesPage = lazy(() => import("./pages/RecipesPage/RecipesPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage/ContactPage"));
+const ReservationPage = lazy(() => import("./pages/ReservationPage/ReservationPage"));
 
 const ErrorPage = lazy(() => import("./pages/ErrorPage/ErrorPage"));
 
@@ -18,7 +17,6 @@ const router = createBrowserRouter([
 		path: "/",
 		element: <MainLayout />,
 		errorElement: <ErrorPage />,
-
 
 		children: [
 			{
@@ -40,6 +38,10 @@ const router = createBrowserRouter([
 			{
 				path: "/contact",
 				element: <ContactPage />,
+			},
+			{
+				path: "/reservation",
+				element: <ReservationPage />,
 			},
 		],
 	},
