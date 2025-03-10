@@ -1,0 +1,96 @@
+.recipe-card {
+	background: $card-background-color; // #dbdfd0
+	border-radius: 12px;
+	box-shadow: $card-box-shadow; // 0 4px 6px rgba(0, 0, 0, 0.05)
+	overflow: hidden;
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	max-width: 350px;
+	margin: 1rem;
+
+	&:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+		background: $hover-background-color; // #dbdfd0 с легким изменением при hover
+	}
+
+	&__header {
+		position: relative;
+	}
+
+	&__image-container {
+		width: 100%;
+		height: 200px;
+		margin: 0;
+	}
+
+	&__image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+	}
+
+	&__title {
+		font-size: 1.5rem;
+		color: $heading-color; // #2c2f24
+		margin: 1rem 1.5rem 0.75rem;
+		line-height: 1.2;
+		font-weight: 600;
+	}
+
+	&__content {
+		padding: 0 1.5rem 1.5rem;
+	}
+
+	&__description {
+		font-size: 1rem;
+		color: $text-color; // #414536
+		margin-bottom: 1rem;
+		line-height: 1.5;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	&__meta {
+		display: flex;
+		justify-content: space-between;
+		font-size: 0.875rem;
+		color: $date-color; // #737865
+		margin-bottom: 1rem;
+	}
+
+	&__time {
+		font-style: italic;
+	}
+
+	&__servings {
+		font-weight: 500;
+	}
+
+	&__footer {
+		padding: 0 1.5rem 1.5rem;
+	}
+
+	&__button {
+		display: inline-block;
+		padding: 0.75rem 1.5rem;
+		background: $btn-dark-color; // #182226
+		color: $text-light; // #f9f9f7
+		text-decoration: none;
+		border-radius: 8px;
+		font-weight: 500;
+		transition: background 0.3s ease, color 0.3s ease;
+		text-align: center;
+
+		&:hover {
+			background: $background-highlight-color; // #ad343e
+			color: $white-color; // #fff
+		}
+	}
+
+	@media (max-width: 768px) {
+		max-width: 100%;
+	}
+}

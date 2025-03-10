@@ -1,0 +1,118 @@
+.recipe-detail {
+	max-width: 1000px;
+	margin: 2rem auto;
+	padding: 2rem;
+	background: $background-section; // #f9f9f7
+	border-radius: 12px;
+	box-shadow: $card-box-shadow; // 0 4px 6px rgba(0, 0, 0, 0.05)
+
+	&__header {
+		text-align: center;
+		margin-bottom: 2rem;
+	}
+
+	&__image-container {
+		margin: 0;
+	}
+
+	&__image {
+		width: 100%;
+		max-height: 400px;
+		object-fit: cover;
+		border-radius: 12px;
+		margin-bottom: 1rem;
+	}
+
+	&__caption {
+		font-size: 1rem;
+		color: $subtext-color; // #495460
+		margin-top: 0.5rem;
+	}
+
+	&__title {
+		font-size: 2.5rem;
+		color: $heading-color; // #2c2f24
+		line-height: 1.2;
+		margin-bottom: 1.5rem;
+	}
+
+	&__content {
+		padding: 0 1rem;
+	}
+
+	&__intro {
+		margin-bottom: 2rem;
+	}
+
+	&__description {
+		font-size: 1.125rem;
+		color: $text-color; // #414536
+		line-height: 1.6;
+		margin-bottom: 1.5rem;
+	}
+
+	&__meta {
+		display: flex;
+		justify-content: space-between;
+		font-size: 1rem;
+		color: $date-color; // #737865
+		flex-wrap: wrap;
+		gap: 1rem;
+	}
+
+	&__time {
+		font-style: italic;
+	}
+
+	&__servings {
+		font-weight: 500;
+	}
+
+	&__ingredients,
+	&__instructions,
+	&__article {
+		margin-bottom: 2rem;
+	}
+
+	&__subtitle {
+		font-size: 1.75rem;
+		color: $text-dark-gray; // #474747
+		margin-bottom: 1rem;
+		border-bottom: 2px solid $text-highlight-color; // #ad343e
+		padding-bottom: 0.5rem;
+	}
+
+	&__list {
+		padding-left: 1.5rem;
+		color: $text-color; // #414536
+		font-size: 1rem;
+		line-height: 1.8;
+	}
+
+	&__item {
+		margin-bottom: 0.75rem;
+	}
+
+	&__text {
+		font-size: 1.125rem;
+		color: $text-color; // #414536
+		line-height: 1.6;
+	}
+
+	@media (max-width: 768px) {
+		padding: 1rem;
+		margin: 1rem;
+
+		&__title {
+			font-size: 2rem;
+		}
+
+		&__image {
+			max-height: 300px;
+		}
+
+		&__subtitle {
+			font-size: 1.5rem;
+		}
+	}
+}
