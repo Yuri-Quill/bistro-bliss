@@ -1,39 +1,46 @@
-$background-dark-gray: #474747;
-$background-highlight-color: #ad343e;
-$hover-background-color: #dbdfd0;
+// === Background Colors ===  
+$background-dark-gray: #474747;  
+$background-highlight: #ad343e;  
+$background-hover: #dbdfd0;  
+$background-section: #f9f9f7;  
+$background-testimonials: #f9f9f7;  
 
-$card-background-color: #dbdfd0;
-$card-border-color: #dbdfd0;
+// === Card Styles ===  
+$card-background: #dbdfd0;  
+$card-border: #dbdfd0;  
+$card-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);  
 
-$background-section: #f9f9f7;
-$background-testimonials: #f9f9f7;
+// === Text Colors ===  
+$text-dark-gray: #474747;  
+$text-heading: #2c2f24;  
+$text-default: #414536;  
+$text-highlight: #ad343e;  
+$text-light: #f9f9f7;  
+$text-subtext: #495460;  
+$color-copyrights: #adb29e;  
+$date-color: #737865;  
 
-$card-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+// === Button Colors ===  
+$btn-dark: #182226;  
+$btn-dark-border: #2c2f24;  
+$btn-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  
 
-$color-copyrights: #adb29e;
-$date-color: #737865;
-$text-dark-gray: #474747;
-$heading-color: #2c2f24;
-$text-color: #414536;
-$text-highlight-color: #ad343e;
-$text-light: #f9f9f7;
-$white-color: #fff;
-$subtext-color: #495460;
+// === Input Styles ===  
+$input-focus: #9b59b6;  
 
-$btn-dark-color: #182226;
-$btn-dark-border-color: #2c2f24;
+// === Green Palette ===  
+$mint-green: #66d9b7;  
+$lime-green: #32cd32;  
+$forest-green: #2e8b57;  
+$olive-green: #6b8e23;  
+$light-tea-green: #98fb98;  
 
-$btn-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-$input-focus-color: #9b59b6;
+// === Red Palette ===  
+$crimson-red: #dc143c;  
+$cherry-blossom: #ff6f61;  
+$pomegranate: #d83b3d;  
+$firebrick: #b22222;  
+$tomato-red: #ff6347;  
 
-$mint-green: #66d9b7;
-$lime-green: #32cd32;
-$forest-green: #2e8b57;
-$olive-green: #6b8e23;
-$light-tea-green: #98fb98;
 
-$crimson-red: #dc143c;
-$cherry-blossom: #ff6f61;
-$pomegranate: #d83b3d;
-$firebrick: #b22222;
-$tomato-red: #ff6347;
+$white-color: #fff

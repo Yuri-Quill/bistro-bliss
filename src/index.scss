@@ -1,6 +1,17 @@
 body {
 	@include dm-sans();
-	color: $heading-color;
+	color: $text-heading;
 	line-height: 150%;
 	background-color: $white-color;
+}
+
+h1,
+h2 {
+	@include playfair-display;
+}
+
+h2 {
+	font-size: clamp(1.875rem, 1.418rem + 2.439vw, 3.438rem);
+	font-weight: 500;
+	line-height: 110%;
 }

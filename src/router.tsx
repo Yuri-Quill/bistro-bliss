@@ -8,12 +8,10 @@ const AboutPage = lazy(() => import("./pages/AboutPage/AboutPage"));
 const MenuPage = lazy(() => import("./pages/MenuPage/MenuPage"));
 const RecipesPage = lazy(() => import("./pages/RecipesPage/RecipesPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage/ContactPage"));
-const ReservationPage = lazy(
-	() => import("./pages/ReservationPage/ReservationPage")
+const BookingPage = lazy(
+	() => import("./pages/BookingPage/BookingPage")
 );
-const RecipeDetail = lazy(
-	() => import("./Components/RecipeDetail/RecipeDetail")
-);
+
 
 const ErrorPage = lazy(() => import("./pages/ErrorPage/ErrorPage"));
 
@@ -39,7 +37,7 @@ const router = createBrowserRouter([
 			{
 				path: "/recipes",
 				element: <RecipesPage />,
-				children: [{ path: ":id", element: <RecipeDetail /> }],
+				
 			},
 			{
 				path: "/contact",
@@ -47,7 +45,7 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "/reservation",
-				element: <ReservationPage />,
+				element: <BookingPage />,
 			},
 		],
 	},

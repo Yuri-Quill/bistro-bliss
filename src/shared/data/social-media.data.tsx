@@ -1,39 +1,31 @@
-import {
-	TbBrandX,
-	TbBrandFacebookFilled,
-	TbBrandInstagram,
-	TbBrandLinkedin,
-} from "react-icons/tb";
+import { FaInstagram, FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
+import ISocialMedia from "../interfaces/social-media.interface";
 
-import { ISocialMedia } from "../interfaces/SocialMedia.interface";
-
-export const socialMediaData: ISocialMedia[] = [
+const socialMediaData: ISocialMedia[] = [
 	{
-		id: 1,
-		platform: "X",
-		url: "https://www.x.com",
-		image: <TbBrandX />,
-		description: "Follow us on X",
+		name: "Instagram",
+		image: <FaInstagram />,
+		href: "https://www.instagram.com",
+		body: "Follow us on Instagram for the latest updates.",
 	},
 	{
-		id: 2,
-		platform: "Facebook",
-		url: "https://www.facebook.com",
-		image: <TbBrandFacebookFilled />,
-		description: "Connect with us on Facebook",
+		name: "Facebook",
+		image: <FaFacebook />,
+		href: "https://www.facebook.com",
+		body: "Like our Facebook page to stay informed.",
 	},
 	{
-		id: 3,
-		platform: "Instagram",
-		url: "https://www.instagram.com",
-		image: <TbBrandInstagram />,
-		description: "See our latest updates on Instagram",
+		name: "LinkedIn",
+		image: <FaLinkedin />,
+		href: "https://www.linkedin.com",
+		body: "Connect with us on LinkedIn for professional insights.",
 	},
 	{
-		id: 4,
-		platform: "LinkedIn",
-		url: "https://www.linkedin.com",
-		image: <TbBrandLinkedin />,
-		description: "Join our network on LinkedIn",
+		name: "X",
+		image: <FaTwitter />,
+		href: "https://www.x.com",
+		body: "Join us on X for more information.",
 	},
 ];
+
+export default socialMediaData;

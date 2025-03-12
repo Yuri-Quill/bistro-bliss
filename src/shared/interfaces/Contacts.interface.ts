@@ -1,8 +1,9 @@
-export interface IContacts {
-	id: number;
+interface IContacts {
 	name: string;
-	info: string;
-	url: string;
 	image: React.ReactElement;
-	description: string;
+	body: string;
+	href: string;
+	description: string
 }
+
+export default IContacts;

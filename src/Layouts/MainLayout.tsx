@@ -1,24 +1,16 @@
-import { Suspense, useEffect } from "react";
+import { Suspense } from "react";
 import { Outlet } from "react-router-dom";
-import { useAppDispatch, useAppSelector } from '../app/hooks';
 
 import Loading from "../Components/Loading/Loading";
-import MainHeader from "../Components/MainHeader/MainHeader";
-import MainFooter from "../Components/MainFooter/MainFooter";
-
-import { fetchRecipesAsync } from "../features/recipes/RecipesSlice";
+import TopBar from "../Components/TopBar/TopBar";
+import Header from "../Components/Header/Header";
 
 const MainLayout = () => {
-	const dispatch = useAppDispatch();
-	const {currentPage, limit} = useAppSelector((state)=> state.recipes)
-
-	useEffect(() => {
-		dispatch(fetchRecipesAsync({ page: currentPage, limit: limit }));
-	}, [dispatch, currentPage, limit]);
-
 	return (
 		<>
-			<MainHeader />
+			<TopBar />
+			<Header/>
+
 
 			<main className="main">
 				<Suspense fallback={<Loading fullScreen />}>
@@ -26,7 +18,7 @@ const MainLayout = () => {
 				</Suspense>
 			</main>
 
-			<MainFooter />
+			<footer>footer</footer>
 		</>
 	);
 };

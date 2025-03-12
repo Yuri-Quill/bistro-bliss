@@ -1,0 +1,50 @@
+.header {
+	padding: 1.5625rem 0;
+
+	& > .container {
+		@include df-space-between;
+	}
+
+	&__logo {
+		@include df-align-center;
+		gap: 0.875rem;
+
+		@include playfair-display(600, italic, 2.6875rem);
+		line-height: 68.75%;
+		letter-spacing: -0.025rem;
+		color: $text-dark-gray;
+	}
+
+	&__list {
+		@include df-full-center;
+		gap: 0.5rem;
+	}
+
+	&__item {
+		transition: scale 0.3s ease-in-out;
+		
+		&:active {
+			transform: scale(0.95);
+		}
+	}
+
+	&__link {
+		color: $text-heading;
+		font-weight: 500;
+		padding: 0.5rem 1rem;
+		border-radius: 2.125rem;
+
+		transition: background-color 0.3s ease-in-out, opacity 0.3s ease-in-out;
+
+		&.active {
+			background-color: $background-hover;
+			opacity: 1;
+		}
+
+
+	}
+
+	&__button-link {
+		padding: 0.75rem 1.5rem;
+	}
+}

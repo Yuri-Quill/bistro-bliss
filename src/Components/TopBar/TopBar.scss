@@ -1,20 +1,56 @@
 .top-bar {
 	width: 100%;
-	padding: 0.6875rem 0;
+	padding: 0.5625rem;
+
 	background-color: $background-dark-gray;
-	margin-bottom: 1.8125rem;
 
 	& > .container {
 		@include df-space-between;
 	}
 
-	&__contacts-list {
-		@include df-center;
-		gap: 1.5625rem;
+	&__contacts {
+		&-list {
+			@include df-full-center;
+			gap: 1.5625rem;
+		}
+
+		&-item {
+			@include df-full-center;
+			gap: 0.5rem;
+
+			& > svg {
+				color: $text-light;
+				width: 1.125rem;
+				height: 1.125rem;
+				display: flex;
+				align-items: center;
+			}
+
+			&:last-child {
+				display: none;
+			}
+		}
+
+		&-link {
+			color: $text-light;
+		}
 	}
 
-	&__social-media-list {
-		@include df-center;
-		gap: 0.25rem;
+	&__social-media {
+		&-list {
+			@include df-full-center;
+			gap: 0.5rem;
+		}
+
+		&-link {
+			color: $text-light;
+
+			& > svg {
+				width: 1.125rem;
+				height: 1.125rem;
+				display: flex;
+				align-items: center;
+			}
+		}
 	}
 }

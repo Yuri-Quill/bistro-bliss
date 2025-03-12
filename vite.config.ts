@@ -1,9 +1,15 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import * as path from "node:path"; 
+import * as path from "node:path";
+import mkcert from "vite-plugin-mkcert"; // Прямой импорт
 
 export default defineConfig({
-	plugins: [react()],
+	plugins: [react(), mkcert()], // Добавляем mkcert
+	server: {
+		host: "localhost", // Хост
+		port: 5173, // Порт
+		 // Включаем HTTPS (опционально, но полезно для явности)
+	},
 	css: {
 		preprocessorOptions: {
 			scss: {
@@ -17,7 +23,7 @@ export default defineConfig({
 	},
 	resolve: {
 		alias: {
-			"@": path.resolve("src"), 
+			"@": path.resolve("src"),
 		},
 	},
 });

@@ -1,30 +1,31 @@
-import { TbMail, TbPhone, TbMapPin2 } from "react-icons/tb";
+import { BsTelephone, BsEnvelope, BsMap } from "react-icons/bs";
+import IContacts from "../interfaces/contacts.interface";
 
-import { IContacts } from "../interfaces/Contacts.interface";
-
-export const contactsData: IContacts[] = [
+const contactsData: IContacts[] = [
 	{
-		id: 1,
-		name: "Phone number",
-		info: "(414) 857 - 0107",
-		url: "tel:+14148570107",
-		image: <TbPhone />,
-		description: "You can call us at",
+		name: "phone number",
+		image: <BsTelephone />,
+		body: "(414) 857 - 0107",
+		href: "tel:4148570107",
+		description: "Please call us for reservations or carry out orders."
 	},
 	{
-		id: 2,
-		name: "Email",
-		info: "yummy@bistrobliss",
-		url: "mailto:yummy@bistrobliss",
-		image: <TbMail />,
-		description: "Contact us via email at",
+		name: "email",
+		image: <BsEnvelope />,
+		body: "yummy@bistrobliss",
+		href: "mailto:yummy@bistrobliss",
+		description: "Please email us for questions or comments."
 	},
 	{
-		id: 3,
-		name: "Address",
-		info: "837 W. Marshall Lane Marshalltown, IA 50158, Los Angeles",
-		url: "https://maps.google.com/?q=837+W+Marshall+Lane+Marshalltown+IA+50158+Los+Angeles",
-		image: <TbMapPin2 />,
-		description: "Visit us at",
+		name: "address",
+		image: <BsMap />,
+		body: "837 W. Marshall Lane Marshalltown, IA 50158, Los Angeles",
+		href:
+			"https://www.google.com/maps/place/Marshalltown,+IA+50158,+USA/@42.0380279,-92.915525,13.29z/data=!4m6!3m5!1s0x87efa530badb1481:0xf015a2c84b2c1be4!8m2!3d42.0494674!4d-92.9080375!16zL20vMHQxY20?entry=ttu&g_ep=EgoyMDI1MDMwNC4wIKXMDSoASAFQAw%3D%3D",
+
+		description: "We are located in the heart of Marshalltown, Iowa."
 	},
 ];
+
+export default contactsData;
+
