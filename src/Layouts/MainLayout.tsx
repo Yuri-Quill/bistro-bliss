@@ -9,8 +9,7 @@ const MainLayout = () => {
 	return (
 		<>
 			<TopBar />
-			<Header/>
-
+			<Header />
 
 			<main className="main">
 				<Suspense fallback={<Loading fullScreen />}>
