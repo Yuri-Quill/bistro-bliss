@@ -1,5 +1,5 @@
 import { Suspense, useEffect } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, ScrollRestoration } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { fetchRecipes } from "../app/slices/recipesSlice";
 import Loading from "../Components/Loading/Loading";
@@ -17,6 +17,8 @@ const MainLayout = () => {
 
 	return (
 		<>
+			<ScrollRestoration />
+
 			<TopBar />
 			<Header />
 			<main className="main">
@@ -24,7 +26,7 @@ const MainLayout = () => {
 					<Outlet />
 				</Suspense>
 			</main>
-			<Footer/>
+			<Footer />
 		</>
 	);
 };

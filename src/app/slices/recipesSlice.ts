@@ -8,8 +8,8 @@ const URL = "https://quill-server-fksr.onrender.com/api";
 
 interface IRecipesResponse {
 	recipes: IRecipes[];
-	page: number ;
-	limit: number ;
+	page: number;
+	limit: number;
 	total: number;
 }
 
@@ -31,11 +31,7 @@ const initialState: IRecipesState = {
 	error: null,
 };
 
-// ! Интерфейс для экшена редьюсера
-interface SetPageLimitPayload {
-    page: number;
-    limit: number;
-}
+
 
 // ! ✅  Асинхронный экшен с учётом пагинации
 
@@ -45,7 +41,8 @@ export const fetchRecipes = createAsyncThunk<
 	{ rejectValue: string }
 >("recipes/fetchRecipes", async ({ page, limit }, { rejectWithValue }) => {
 	try {
-		
+		// await new Promise((resolve) => setTimeout(resolve, 6000));
+
 		const { data } = await axios.get<IRecipesResponse>(`${URL}/recipes`, {
 			params: { page, limit }, // ! 👈 Автоматически подставляет ?page=1&limit=10
 		});
@@ -62,10 +59,11 @@ export const fetchRecipes = createAsyncThunk<
 const recipesSlice = createSlice({
 	name: "recipes",
 	initialState,
-	reducers: {setPageLimit: (state, action: PayloadAction<SetPageLimitPayload>) => {
-        state.page = action.payload.page;
-        state.limit = action.payload.limit;
-    },},
+	reducers: {
+		setPage: (state, action: PayloadAction<number>) => {
+			state.page = action.payload;
+		},
+	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(fetchRecipes.pending, (state) => {
@@ -92,5 +90,5 @@ const recipesSlice = createSlice({
 			);
 	},
 });
-export const { setPageLimit } = recipesSlice.actions;
+export const { setPage } = recipesSlice.actions;
 export default recipesSlice.reducer;

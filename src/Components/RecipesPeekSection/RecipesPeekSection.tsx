@@ -25,7 +25,7 @@ const RecipesPeekSection = () => {
 					<h2 className="recipes-peek__title">Our Recipes & Articles</h2>
 					<ButtonLink
 						className="recipes-peek__btn recipes-peek__btn--header"
-						href={"/recipes?page=1&limit=10"}
+						href={"/recipes?page=1&limit=8"}
 						aria="Read all recipes button link"
 						isActive={true}
 					>
@@ -43,7 +43,7 @@ const RecipesPeekSection = () => {
 					</ul>
 					<ButtonLink
 						className="recipes-peek__btn recipes-peek__btn--footer"
-						href={"/recipes?page=1&limit=10"}
+						href={"/recipes?page=1&limit=8"}
 						aria="Read all recipes button link"
 						isActive={true}
 					>
