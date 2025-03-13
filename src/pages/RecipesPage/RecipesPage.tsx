@@ -22,23 +22,6 @@ const RecipesPage = () => {
 
 	const totalPages = total > 0 ? Math.ceil(total / currentLimit) : 1;
 
-	// const nextPage = () => {
-	// 	const newPage = currentPage + 1;
-	// 	setSearchParams({
-	// 		page: String(newPage),
-	// 		limit: String(currentLimit),
-	// 	});
-	// 	dispatch(setPage(newPage));
-	// };
-
-	// const prevPage = () => {
-	// 	const newPage = Math.max(1, currentPage - 1);
-	// 	setSearchParams({
-	// 		page: String(newPage),
-	// 		limit: String(currentLimit),
-	// 	});
-	// 	dispatch(setPage(newPage));
-	// };
 
 	const nextPage = () => {
 		const newPage = currentPage + 1;

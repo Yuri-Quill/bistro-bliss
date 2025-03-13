@@ -19,7 +19,7 @@ const Footer = () => {
 						</span>
 					</h2>
 					<p className="footer__content-text">
-						Welcome to Bistro Bliss, a place where passion for food and warm
+						Bistro Bliss, a place where passion for food and warm
 						hospitality come together. Our bistro offers a perfect blend of refined
 						flavors, cozy ambiance, and impeccable service to create a truly memorable
 						dining experience.

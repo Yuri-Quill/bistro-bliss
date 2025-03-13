@@ -13,7 +13,6 @@ const RecipesPeekCard = ({ data }: IRecipesPeekCardProps) => {
 		day: "numeric",
 	});
 
-	console.log(formattedDate);
 
 	return (
 		<figure className="recipes-card">

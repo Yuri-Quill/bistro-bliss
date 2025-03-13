@@ -3,7 +3,7 @@ import deliveryData from "../../shared/data/delivery.data";
 
 import Chef from "../../assets/delivery/cooking-chef.avif";
 import Carbonara from "../../assets/delivery/carbonara.jpg";
-import Beef from "../../assets/delivery/1.jpg";
+import Beef from "../../assets/delivery/beef.jpg";
 
 import "./DeliverySection.scss";
 
