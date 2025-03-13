@@ -1,0 +1,79 @@
+.recipes-peek {
+	background-color: $background-section;
+	padding-top: clamp(2.5rem, 1.099rem + 7.729vw, 7.5rem);
+	padding-bottom: clamp(2.5rem, 0.801rem + 9.372vw, 8.563rem);
+
+	&__header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		margin-bottom: clamp(1.875rem, 1.28rem + 3.285vw, 4rem);
+
+		// ! MEDIA
+
+		@media (max-width: 710px) {
+			flex-direction: column;
+			text-align: center;
+		}
+	}
+	&__list {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: clamp(1.125rem, 1.02rem + 0.58vw, 1.5rem);
+
+		// ! MEDIA
+
+		@media (max-width: 920px) {
+			display: flex;
+			flex-wrap: wrap;
+		}
+	}
+
+	&__item {
+		// ! MEDIA
+		@media (max-width: 920px) {
+			flex: 1 1 290px;
+		}
+	}
+
+	&__item:first-child {
+		grid-row: span 2 / span 2;
+		grid-column: span 2 / span 2;
+
+		& > figure p {
+			display: block;
+
+			// ! MEDIA
+
+			@media (max-width: 920px) {
+				display: none;
+			}
+		}
+		& > figure img {
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	&__btn--footer {
+		display: none;
+	}
+
+	// ! MEDIA
+
+	@media (max-width: 710px) {
+		text-align: center;
+
+		&__list {
+			margin-bottom: 40px;
+		}
+
+		&__btn--header {
+			display: none;
+		}
+
+		&__btn--footer {
+			display: inline-block;
+		}
+	}
+}

@@ -1,0 +1,51 @@
+.recipes-card {
+	border-radius: 0.75rem;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+
+	background-color: $white-color;
+
+	box-shadow: $card-box-shadow;
+
+	&__image {
+		width: 100%;
+		height: 100%;
+		margin-bottom: clamp(0.625rem, 0.537rem + 0.483vw, 0.938rem);
+		border-top-left-radius: 0.75rem;
+		border-top-right-radius: 0.75rem;
+		object-fit: cover;
+	}
+	&__caption {
+		padding: 1.5625rem;
+		padding-bottom: 15px;
+	}
+
+	&__date {
+		display: block;
+		font-size: clamp(0.75rem, 0.68rem + 0.386vw, 1rem);
+		font-weight: 500;
+		color: $date-color;
+		margin-bottom: clamp(0.75rem, 0.697rem + 0.29vw, 0.938rem);
+	}
+
+	&__title {
+		font-size: clamp(1.125rem, 1.09rem + 0.193vw, 1.25rem);
+		font-weight: 500;
+		line-height: 130%;
+		margin-bottom: clamp(0.75rem, 0.697rem + 0.29vw, 0.938rem);
+
+		display: -webkit-box;
+		-webkit-line-clamp: 1; /* Обрезать после 2 строк */
+		line-clamp: 1; /* Обрезать после 2 строк */
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+	&__text {
+		display: none;
+		color: $text-default;
+		font-size: clamp(0.813rem, 0.76rem + 0.29vw, 1rem);
+	}
+}

@@ -19,8 +19,8 @@ interface IRecipes {
 
 	instructions: Array<string>;
 
-	createdAt: Date;
-	updatedAt: Date;
+	createdAt: string;
+	updatedAt: string;
 }
 
 export default IRecipes;

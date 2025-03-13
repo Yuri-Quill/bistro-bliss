@@ -1,4 +1,17 @@
+
+import "./RecipesPage.scss";
+
+
 const RecipesPage = () => {
-	return <div>recipes page</div>;
+
+
+
+	return (
+		<div>
+			<h1>Recipes</h1>
+
+		</div>
+	);
 };
+
 export default RecipesPage;
