@@ -60,26 +60,22 @@
 				content: "−";
 				transform: rotate(180deg);
 			}
-		}
-
-		&[open] + .recipe-details__details-list {
-			grid-template-rows: 1fr;
+			.recipe-details__summary {
+				background-color: color.adjust($background-dark-gray, $lightness: 50%);
+			}
 		}
 
 		&-list {
-			display: grid;
-			grid-template-rows: 0fr;
-			transition-duration: 0.3s;
 			padding: 1rem;
 			margin: 0;
-			background: #fff;
+			background: $white-color;
 			list-style: none;
 		}
 
 		&-item {
 			padding: 0.75rem 0;
-			border-bottom: 1px solid #eee;
-			color: #444;
+			border-bottom: 1px solid $card-border;
+			color: $text-default;
 
 			&:last-child {
 				border-bottom: none;
@@ -88,7 +84,7 @@
 	}
 
 	&__summary {
-		background: #f8f9fa;
+		background: color.adjust($background-section, $lightness: -2%);
 		padding: 1rem;
 		cursor: pointer;
 		font-weight: 600;
@@ -117,4 +113,3 @@
 		}
 	}
 }
-
