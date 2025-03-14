@@ -15,7 +15,7 @@ interface IRecipesResponse {
 
 // ! ✅  Интерфейс состояния
 
-interface IRecipesState extends IRecipesResponse {
+export interface IRecipesState extends IRecipesResponse {
 	loading: boolean;
 	error: string | null;
 }

@@ -1,0 +1,120 @@
+.recipe-details {
+	margin-top: 40px;
+	margin-bottom: 40px;
+
+	&__image {
+		display: flex;
+		align-self: center;
+		float: left;
+		margin-top: 20px;
+		margin-right: 20px;
+		margin-bottom: 20px;
+		width: 500px;
+		height: 500px;
+		border-radius: 50%;
+		object-fit: cover;
+		shape-outside: circle(50%);
+		box-shadow: 0 0 4px rgba(0, 0, 0, 0.25), 0 4px 8px rgba(0, 0, 0, 0.25);
+	}
+
+	&__title {
+		@include playfair-display;
+		font-weight: 500;
+		text-align: center;
+		font-size: clamp(2.188rem, 1.487rem + 3.865vw, 4.688rem);
+		line-height: 1;
+		margin-bottom: 30px;
+	}
+
+	&__description {
+		text-align: center;
+		margin-bottom: 30px;
+		font-weight: 500;
+		color: $text-heading;
+		font-size: 18px;
+	}
+
+	&__caption {
+		& > span {
+			display: block;
+			margin-bottom: 0.625rem;
+		}
+	}
+
+	&__text {
+		color: $text-default;
+		font-size: 16px;
+		margin-bottom: 30px;
+		line-height: 180%;
+	}
+
+	&__details {
+		max-width: 320px;
+		margin: 1rem 0;
+		border-radius: 8px;
+		overflow: hidden;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+		&[open] {
+			.recipe-details__summary::after {
+				content: "−";
+				transform: rotate(180deg);
+			}
+		}
+
+		&[open] + .recipe-details__details-list {
+			grid-template-rows: 1fr;
+		}
+
+		&-list {
+			display: grid;
+			grid-template-rows: 0fr;
+			transition-duration: 0.3s;
+			padding: 1rem;
+			margin: 0;
+			background: #fff;
+			list-style: none;
+		}
+
+		&-item {
+			padding: 0.75rem 0;
+			border-bottom: 1px solid #eee;
+			color: #444;
+
+			&:last-child {
+				border-bottom: none;
+			}
+		}
+	}
+
+	&__summary {
+		background: #f8f9fa;
+		padding: 1rem;
+		cursor: pointer;
+		font-weight: 600;
+		color: #333;
+		position: relative;
+		transition: background 0.3s ease;
+		list-style: none;
+
+		&::-webkit-details-marker {
+			display: none;
+		}
+		-moz-appearance: none;
+		appearance: none;
+
+		&::after {
+			content: "+";
+			position: absolute;
+			right: 1rem;
+			font-size: 1.5rem;
+			color: #666;
+			transition: transform 0.3s ease;
+		}
+
+		&:hover {
+			background: #e9ecef;
+		}
+	}
+}
+

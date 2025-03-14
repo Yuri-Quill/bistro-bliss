@@ -7,11 +7,11 @@ import HomePage from "./pages/HomePage/HomePage";
 const AboutPage = lazy(() => import("./pages/AboutPage/AboutPage"));
 const MenuPage = lazy(() => import("./pages/MenuPage/MenuPage"));
 const RecipesPage = lazy(() => import("./pages/RecipesPage/RecipesPage"));
-const ContactPage = lazy(() => import("./pages/ContactPage/ContactPage"));
-const BookingPage = lazy(
-	() => import("./pages/BookingPage/BookingPage")
+const RecipeDetailPage = lazy(
+	() => import("./pages/RecipeDetailPage/RecipeDetailPage")
 );
-
+const ContactPage = lazy(() => import("./pages/ContactPage/ContactPage"));
+const BookingPage = lazy(() => import("./pages/BookingPage/BookingPage"));
 
 const ErrorPage = lazy(() => import("./pages/ErrorPage/ErrorPage"));
 
@@ -37,7 +37,10 @@ const router = createBrowserRouter([
 			{
 				path: "/recipes",
 				element: <RecipesPage />,
-				
+			},
+			{
+				path: "/recipes/:id",
+				element: <RecipeDetailPage />,
 			},
 			{
 				path: "/contact",
