@@ -41,7 +41,7 @@
 		}
 	}
 
-	&__text {
+	&__article {
 		color: $text-default;
 		font-size: 16px;
 		margin-bottom: 30px;
@@ -82,7 +82,9 @@
 			}
 		}
 	}
-
+    &__info{
+        display: flex;
+    }
 	&__summary {
 		background: color.adjust($background-section, $lightness: -2%);
 		padding: 1rem;
