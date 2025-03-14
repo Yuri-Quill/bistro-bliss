@@ -1,117 +1,32 @@
-.recipe-details {
-	margin-top: 40px;
-	margin-bottom: 40px;
+.recipe-detail__accordion-list {
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.3s ease-in-out; // Добавляем плавный переход
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
 
-	&__image {
-		display: flex;
-		align-self: center;
-		float: left;
-		margin-top: 20px;
-		margin-right: 20px;
-		margin-bottom: 20px;
-		width: 500px;
-		height: 500px;
-		border-radius: 50%;
-		object-fit: cover;
-		shape-outside: circle(50%);
-		box-shadow: 0 0 4px rgba(0, 0, 0, 0.25), 0 4px 8px rgba(0, 0, 0, 0.25);
-	}
+.recipe-detail__accordion-ingredients--open,
+.recipe-detail__accordion-instruction--open {
+	max-height: 900px; // Установите максимальную высоту больше, чем предполагаемый контент
+}
 
-	&__title {
-		@include playfair-display;
-		font-weight: 500;
-		text-align: center;
-		font-size: clamp(2.188rem, 1.487rem + 3.865vw, 4.688rem);
-		line-height: 1;
-		margin-bottom: 30px;
-	}
+// Стили для элементов списка
+.recipe-detail__accordion-item {
+	padding: 8px 0;
+}
 
-	&__description {
-		text-align: center;
-		margin-bottom: 30px;
-		font-weight: 500;
-		color: $text-heading;
-		font-size: 18px;
-	}
+// Добавьте эти базовые стили для аккордеона
+.recipe-detail__accordion {
+	width: 100%;
+}
 
-	&__caption {
-		& > span {
-			display: block;
-			margin-bottom: 0.625rem;
-		}
-	}
+.recipe-detail__ingredients,
+.recipe-detail__instructions {
+	cursor: pointer;
+}
 
-	&__article {
-		color: $text-default;
-		font-size: 16px;
-		margin-bottom: 30px;
-		line-height: 180%;
-	}
-
-	&__details {
-		max-width: 320px;
-		margin: 1rem 0;
-		border-radius: 8px;
-		overflow: hidden;
-		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-		&[open] {
-			.recipe-details__summary::after {
-				content: "−";
-				transform: rotate(180deg);
-			}
-			.recipe-details__summary {
-				background-color: color.adjust($background-dark-gray, $lightness: 50%);
-			}
-		}
-
-		&-list {
-			padding: 1rem;
-			margin: 0;
-			background: $white-color;
-			list-style: none;
-		}
-
-		&-item {
-			padding: 0.75rem 0;
-			border-bottom: 1px solid $card-border;
-			color: $text-default;
-
-			&:last-child {
-				border-bottom: none;
-			}
-		}
-	}
-    &__info{
-        display: flex;
-    }
-	&__summary {
-		background: color.adjust($background-section, $lightness: -2%);
-		padding: 1rem;
-		cursor: pointer;
-		font-weight: 600;
-		color: #333;
-		position: relative;
-		transition: background 0.3s ease;
-		list-style: none;
-
-		&::-webkit-details-marker {
-			display: none;
-		}
-		-moz-appearance: none;
-		appearance: none;
-
-		&::after {
-			content: "+";
-			position: absolute;
-			right: 1rem;
-			font-size: 1.5rem;
-			color: #666;
-			transition: transform 0.3s ease;
-		}
-
-		&:hover {
-			background: #e9ecef;
-		}
-	}
+.recipe-detail__accordion-title {
+	margin: 10px 0;
 }
