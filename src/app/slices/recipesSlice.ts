@@ -25,7 +25,7 @@ export interface IRecipesState extends IRecipesResponse {
 const initialState: IRecipesState = {
 	recipes: [],
 	page: 1,
-	limit: 10,
+	limit: 8,
 	total: 0,
 	loading: false,
 	error: null,
