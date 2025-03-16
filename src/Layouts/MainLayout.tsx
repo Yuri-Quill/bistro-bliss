@@ -9,10 +9,12 @@ import Footer from "../Components/Footer/Footer";
 
 const MainLayout = () => {
 	const dispatch = useAppDispatch();
-	const { page, limit } = useAppSelector((state) => state.recipes);
+	const {
+		paginatedRecipes: { page, limit },
+	} = useAppSelector((state) => state.recipes);
 
 	useEffect(() => {
-		dispatch(fetchRecipes({ page, limit }));
+		dispatch(fetchRecipes({ page: 1, limit: 5, forMainPage: true }));
 	}, [dispatch, page, limit]);
 
 	return (

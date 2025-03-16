@@ -7,9 +7,9 @@ import RecipesPeekCard from "./RecipesPeekCard/RecipesPeekCard";
 import "./RecipesPeekSection.scss";
 
 const RecipesPeekSection = () => {
-	const { loading, recipes } = useAppSelector((state) => state.recipes);
+	const { loading, mainPageRecipes } = useAppSelector((state) => state.recipes);
 
-	const recipesSliced = recipes.slice(0, 5);
+	
 
 	if (loading) {
 		return (
@@ -35,15 +35,17 @@ const RecipesPeekSection = () => {
 
 				
 					<ul className="recipes-peek__list">
-						{recipesSliced.map((recipes) => (
+						{mainPageRecipes.map((recipes) => (
 							<li className="recipes-peek__item" key={recipes._id}>
+						
 								<RecipesPeekCard data={recipes} />
+							
 							</li>
 						))}
 					</ul>
 					<ButtonLink
 						className="recipes-peek__btn recipes-peek__btn--footer"
-						href={"/recipes?page=1&limit=8"}
+						href={"/recipes"}
 						aria="Read all recipes button link"
 						isActive={true}
 					>

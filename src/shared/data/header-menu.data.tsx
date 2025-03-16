@@ -18,7 +18,7 @@ const headerMenuData : IHeaderMenu[] =[
     },
     {
         name:'Recipes',
-        href: '/recipes?page=1&limit=8',
+        href: '/recipes',
         body:'Recipes page'
     },
     {
