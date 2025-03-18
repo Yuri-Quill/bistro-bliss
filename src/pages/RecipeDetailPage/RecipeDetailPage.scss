@@ -1,0 +1,121 @@
+.recipe-detail {
+	text-align: center;
+	margin-bottom: 2.5rem;
+
+	& > .container {
+		@include df-full-center;
+		flex-direction: column;
+	}
+
+	&__title {
+		margin-bottom: clamp(1.563rem, 1.3rem + 1.449vw, 2.5rem);
+	}
+
+	&__description {
+		@include playfair-display;
+		font-size: clamp(1.188rem, 1.1rem + 0.483vw, 1.5rem);
+		margin-bottom: clamp(1.563rem, 1.3rem + 1.449vw, 2.5rem);
+	}
+
+	&__image {
+		float: left;
+		object-fit: cover;
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.05);
+		shape-outside: circle(50% at 50% 50%);
+		clip-path: circle(50% at 50% 50%);
+		width: 500px;
+		height: 500px;
+		margin-right: 20px;
+		margin-bottom: 10px;
+	}
+
+	&__caption {
+		margin-bottom: 20px;
+
+		&-text {
+			font-size: clamp(0.875rem, 0.84rem + 0.193vw, 1rem);
+			line-height: 170%;
+			color: $text-default;
+			text-align: justify;
+			hyphens: auto;
+		}
+	}
+
+	&__info {
+		@include df-full-center;
+		gap: 20px;
+		margin-bottom: 20px;
+
+		&-item {
+			width: 290px;
+			@include playfair-display;
+			padding: clamp(0.875rem, 0.77rem + 0.58vw, 1.25rem);
+			background-color: $background-accordion;
+			color: $text-default;
+			font-size: 20px;
+			font-weight: 600;
+		}
+
+		&-value {
+			color: $text-highlight;
+			@include dm-sans;
+			font-weight: 500;
+			font-size: clamp(0.875rem, 0.805rem + 0.386vw, 1.125rem);
+		}
+	}
+
+	&__accordion {
+		display: flex;
+		justify-content: center;
+		gap: 20px;
+
+		&-section {
+			width: 290px;
+			cursor: pointer;
+		}
+
+		&-title {
+			@include playfair-display;
+			font-size: 20px;
+			font-weight: 600;
+			padding: clamp(0.875rem, 0.77rem + 0.58vw, 1.25rem);
+			background-color: $background-accordion;
+			margin-bottom: 10px;
+			position: relative;
+            &--active {
+                color: $background-highlight;
+            }
+			&::before {
+				content: "+";
+				position: absolute;
+				@include dm-sans;
+				right: 10px;
+				top: 50%;
+				transform: translateY(-50%);
+				font-size: 30px;
+			}
+
+		}
+
+		&-list {
+			max-height: 0;
+			overflow: hidden;
+			transition: max-height 0.3s ease-in-out;
+
+			&--open {
+				max-height: 100%;
+			}
+		}
+
+		&-item {
+			padding: 10px;
+			&:not(:last-child) {
+				border-bottom: 1px solid $card-border;
+			}
+		}
+
+		&-text {
+			color: $text-default;
+		}
+	}
+}

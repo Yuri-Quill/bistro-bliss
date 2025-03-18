@@ -9,12 +9,17 @@ import "./RecipeDetailPage.scss";
 
 const RecipeDetailPage = () => {
 	const dispatch = useAppDispatch();
+	
+	const [openAccordion, setOpenAccordion] = useState<Record<string, boolean>>({
+		ingredients: false,
+		instructions: false,
+	});
+	
+	const { id } = useParams<{ id: string }>();
 
 	const { recipeByID, loading, error } = useAppSelector(
 		(state) => state.recipes
 	);
-
-	const { id } = useParams<{ id: string }>();
 
 	useEffect(() => {
 		if (id) {
@@ -22,15 +27,11 @@ const RecipeDetailPage = () => {
 		}
 	}, [dispatch, id]);
 
-	const [openAccordion, setOpenAccordion] = useState<Record<string, boolean>>({
-		ingredients: false,
-		instructions: false,
-	});
 
 	if (loading) return <Loading fullScreen />;
 	if (!recipeByID)
 		return (
-			<div className="error-message">Error: {error|| "Recipe not found."}</div>
+			<div className="error-message">Error: {error || "Recipe not found."}</div>
 		);
 
 	const toggleAccordion = (accordion: string) => {
