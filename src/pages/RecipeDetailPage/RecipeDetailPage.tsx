@@ -9,12 +9,12 @@ import "./RecipeDetailPage.scss";
 
 const RecipeDetailPage = () => {
 	const dispatch = useAppDispatch();
-	
+
 	const [openAccordion, setOpenAccordion] = useState<Record<string, boolean>>({
 		ingredients: false,
 		instructions: false,
 	});
-	
+
 	const { id } = useParams<{ id: string }>();
 
 	const { recipeByID, loading, error } = useAppSelector(
@@ -26,7 +26,6 @@ const RecipeDetailPage = () => {
 			dispatch(getRecipeByID(id));
 		}
 	}, [dispatch, id]);
-
 
 	if (loading) return <Loading fullScreen />;
 	if (!recipeByID)
@@ -103,7 +102,13 @@ const RecipeDetailPage = () => {
 							onClick={() => toggleAccordion("ingredients")}
 							aria-label="Ingredients section"
 						>
-							<h3 className="recipe-detail__accordion-title">Ingredients</h3>
+							<h3
+								className={`recipe-detail__accordion-title ${
+									openAccordion.ingredients ? "open" : ""
+								}`}
+							>
+								Ingredients
+							</h3>
 							<ul className={ingredientsClass} aria-label="Ingredients list">
 								{recipeByID.ingredients.map((item, index) => (
 									<li className="recipe-detail__accordion-item" key={index}>
@@ -118,7 +123,13 @@ const RecipeDetailPage = () => {
 							onClick={() => toggleAccordion("instructions")}
 							aria-label="Instructions section"
 						>
-							<h3 className="recipe-detail__accordion-title">Instructions</h3>
+							<h3
+								className={`recipe-detail__accordion-title ${
+									openAccordion.instructions ? "open" : ""
+								}`}
+							>
+								Instructions
+							</h3>
 							<ul className={instructionsClass} aria-label="Instructions list">
 								{recipeByID.instructions.map((item, index) => (
 									<li className="recipe-detail__accordion-item" key={index}>
