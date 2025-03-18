@@ -7,9 +7,9 @@ import RecipesPeekCard from "./RecipesPeekCard/RecipesPeekCard";
 import "./RecipesPeekSection.scss";
 
 const RecipesPeekSection = () => {
-	const { loading, mainPageRecipes } = useAppSelector((state) => state.recipes);
+	const { loading, recipes } = useAppSelector((state) => state.recipes);
 
-	
+	const mainPageRecipes = recipes.slice(0,5)
 
 	if (loading) {
 		return (

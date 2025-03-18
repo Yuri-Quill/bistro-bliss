@@ -1,107 +1,136 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { getRecipeByID } from "../../app/slices/recipesSlice";
 import cn from "classnames";
-import { useAppSelector } from "../../app/hooks";
 import Loading from "../../Components/Loading/Loading";
 import Container from "../../Components/Container/Container";
 import "./RecipeDetailPage.scss";
 
 const RecipeDetailPage = () => {
-    const [openAccordion, setOpenAccordion] = useState<Record<string, boolean>>({
-        ingredients: false,
-        instructions: false,
-    });
+	const dispatch = useAppDispatch();
 
-    const {
-        paginatedRecipes: { recipes },
-        loading,
-    } = useAppSelector((state) => state.recipes);
-    const { id } = useParams<{ id: string }>();
+	const { recipeByID, loading, error } = useAppSelector(
+		(state) => state.recipes
+	);
 
-    const recipe = recipes.find((item) => String(item._id) === id);
+	const { id } = useParams<{ id: string }>();
 
-    if (loading) return <Loading fullScreen />;
-    if (!recipe) return <div className="error-message">Recipe not found</div>;
+	useEffect(() => {
+		if (id) {
+			dispatch(getRecipeByID(id));
+		}
+	}, [dispatch, id]);
 
-    const toggleAccordion = (accordion: string) => {
-        setOpenAccordion((prev) => ({
-            ...prev,
-            [accordion]: !prev[accordion],
-        }));
-    };
+	const [openAccordion, setOpenAccordion] = useState<Record<string, boolean>>({
+		ingredients: false,
+		instructions: false,
+	});
 
-    const ingredientsClass = cn("recipe-detail__accordion-list", {
-        "recipe-detail__accordion-list--open": openAccordion.ingredients,
-    });
+	if (loading) return <Loading fullScreen />;
+	if (!recipeByID)
+		return (
+			<div className="error-message">Error: {error|| "Recipe not found."}</div>
+		);
 
-    const instructionsClass = cn("recipe-detail__accordion-list", {
-        "recipe-detail__accordion-list--open": openAccordion.instructions,
-    });
+	const toggleAccordion = (accordion: string) => {
+		setOpenAccordion((prev) => ({
+			...prev,
+			[accordion]: !prev[accordion],
+		}));
+	};
 
-    return (
-        <section className="recipe-detail">
-            <Container>
-                <h2 className="recipe-detail__title">{recipe.title}</h2>
-                <p className="recipe-detail__description">{recipe.description}</p>
+	const ingredientsClass = cn("recipe-detail__accordion-list", {
+		"recipe-detail__accordion-list--open": openAccordion.ingredients,
+	});
 
-                <figure className="recipe-detail__content">
-                    <img
-                        src={recipe.image}
-                        alt={`Image for ${recipe.title}`}
-                        className="recipe-detail__image"
-                        width={500}
-                        height={500}
-                    />
-                    <figcaption className="recipe-detail__caption">
-                        <p className="recipe-detail__caption-text">{recipe.article}</p>
-                    </figcaption>
-                </figure>
+	const instructionsClass = cn("recipe-detail__accordion-list", {
+		"recipe-detail__accordion-list--open": openAccordion.instructions,
+	});
 
-                <section className="recipe-detail__info-block">
-                    <div className="recipe-detail__info">
-                        <h4 className="recipe-detail__info-item">
-                            Preparing time:{" "}
-                            <span className="recipe-detail__info-value">{recipe.prepTime}</span>
-                        </h4>
-                        <h4 className="recipe-detail__info-item">
-                            Cooking time:{" "}
-                            <span className="recipe-detail__info-value">{recipe.cookTime}</span>
-                        </h4>
-                    </div>
+	return (
+		<section className="recipe-detail" aria-label="Recipe detail section">
+			<Container>
+				<h2 className="recipe-detail__title" aria-label="Recipe title">
+					{recipeByID.title}
+				</h2>
+				<p className="recipe-detail__description" aria-label="Recipe description">
+					{recipeByID.description}
+				</p>
 
-                    <section className="recipe-detail__accordion">
-                        <div
-                            className="recipe-detail__accordion-section"
-                            onClick={() => toggleAccordion("ingredients")}
-                        >
-                            <h3 className="recipe-detail__accordion-title">Ingredients</h3>
-                            <ul className={ingredientsClass}>
-                                {recipe.ingredients.map((item, index) => (
-                                    <li className="recipe-detail__accordion-item" key={index}>
-                                        <span className="recipe-detail__accordion-text">{item}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
+				<figure className="recipe-detail__content" aria-label="Recipe content">
+					<img
+						src={recipeByID.image}
+						alt={`Image for ${recipeByID.title}`}
+						className="recipe-detail__image"
+						width={500}
+						height={500}
+					/>
+					<figcaption className="recipe-detail__caption" aria-label="Recipe caption">
+						<p className="recipe-detail__caption-text">{recipeByID.article}</p>
+					</figcaption>
+				</figure>
 
-                        <div
-                            className="recipe-detail__accordion-section"
-                            onClick={() => toggleAccordion("instructions")}
-                        >
-                            <h3 className="recipe-detail__accordion-title">Instructions</h3>
-                            <ul className={instructionsClass}>
-                                {recipe.instructions.map((item, index) => (
-                                    <li className="recipe-detail__accordion-item" key={index}>
-                                        <span className="recipe-detail__accordion-text">{item}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </section>
-                </section>
-            </Container>
-        </section>
-    );
+				<section
+					className="recipe-detail__info-block"
+					aria-label="Recipe information block"
+				>
+					<div className="recipe-detail__info">
+						<h4 className="recipe-detail__info-item">
+							Preparing time:{" "}
+							<span
+								className="recipe-detail__info-value"
+								aria-label="Preparation time"
+							>
+								{recipeByID.prepTime}
+							</span>
+						</h4>
+						<h4 className="recipe-detail__info-item">
+							Cooking time:{" "}
+							<span className="recipe-detail__info-value" aria-label="Cooking time">
+								{recipeByID.cookTime}
+							</span>
+						</h4>
+					</div>
+
+					<section
+						className="recipe-detail__accordion"
+						aria-label="Recipe accordion sections"
+					>
+						<article
+							className="recipe-detail__accordion-section"
+							onClick={() => toggleAccordion("ingredients")}
+							aria-label="Ingredients section"
+						>
+							<h3 className="recipe-detail__accordion-title">Ingredients</h3>
+							<ul className={ingredientsClass} aria-label="Ingredients list">
+								{recipeByID.ingredients.map((item, index) => (
+									<li className="recipe-detail__accordion-item" key={index}>
+										<span className="recipe-detail__accordion-text">{item}</span>
+									</li>
+								))}
+							</ul>
+						</article>
+
+						<article
+							className="recipe-detail__accordion-section"
+							onClick={() => toggleAccordion("instructions")}
+							aria-label="Instructions section"
+						>
+							<h3 className="recipe-detail__accordion-title">Instructions</h3>
+							<ul className={instructionsClass} aria-label="Instructions list">
+								{recipeByID.instructions.map((item, index) => (
+									<li className="recipe-detail__accordion-item" key={index}>
+										<span className="recipe-detail__accordion-text">{item}</span>
+									</li>
+								))}
+							</ul>
+						</article>
+					</section>
+				</section>
+			</Container>
+		</section>
+	);
 };
 
 export default RecipeDetailPage;

@@ -12,48 +12,59 @@ interface IPaginatedRecipes {
     total: number;
 }
 
-// State interface
-export interface IRecipesState {
-    mainPageRecipes: IRecipes[];
-    paginatedRecipes: IPaginatedRecipes;
+// State interface (updated to allow recipeByID to be null)
+export interface IRecipesState extends IPaginatedRecipes {
+    recipeByID: IRecipes | null; // Changed from IRecipes to IRecipes | null
     loading: boolean;
     error: string | null;
 }
 
-// Initial state
+// Initial state (updated recipeByID to null)
 const initialState: IRecipesState = {
-    mainPageRecipes: [],
-    paginatedRecipes: {
-        recipes: [],
-        page: 1,
-        limit: 8,
-        total: 0,
-    },
+    recipeByID: null, // Changed from [] to null
+    recipes: [],
+    page: 1,
+    limit: 8,
+    total: 0,
     loading: false,
     error: null,
 };
 
-// Thunk to fetch recipes
+// Thunk to fetch paginated recipes
 export const fetchRecipes = createAsyncThunk<
-    IPaginatedRecipes & { forMainPage: boolean },
-    { page: number; limit: number; forMainPage: boolean },
+    IPaginatedRecipes,
+    { page: number; limit: number },
     { rejectValue: string }
->(
-    "recipes/fetchRecipes",
-    async ({ page, limit, forMainPage }, { rejectWithValue }) => {
-        try {
-            const { data } = await axios.get<IPaginatedRecipes>(`${URL}/recipes`, {
-                params: { page, limit },
-            });
-            return { ...data, forMainPage };
-        } catch (error: unknown) {
-            if (error instanceof Error) {
-                return rejectWithValue(error.message);
-            }
-            return rejectWithValue("Unknown error occurred");
+>("recipes/fetchRecipes", async ({ page, limit }, { rejectWithValue }) => {
+    try {
+        const { data } = await axios.get<IPaginatedRecipes>(`${URL}/recipes`, {
+            params: { page, limit },
+        });
+        return data;
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            return rejectWithValue(error.message);
         }
+        return rejectWithValue("Unknown error occurred");
     }
-);
+});
+
+// Thunk to fetch a single recipe by ID
+export const getRecipeByID = createAsyncThunk<
+    IRecipes,
+    string,
+    { rejectValue: string }
+>("recipesId/getRecipeByID", async (id, { rejectWithValue }) => {
+    try {
+        const { data } = await axios.get<IRecipes>(`${URL}/recipes/${id}`);
+        return data;
+    } catch (error: unknown) {
+        if (error instanceof Error) {
+            return rejectWithValue(error.message);
+        }
+        return rejectWithValue("Unknown error occurred");
+    }
+});
 
 // Slice
 const recipesSlice = createSlice({
@@ -61,11 +72,12 @@ const recipesSlice = createSlice({
     initialState,
     reducers: {
         setPage: (state, action: PayloadAction<number>) => {
-            state.paginatedRecipes.page = action.payload;
+            state.page = action.payload;
         },
     },
     extraReducers: (builder) => {
         builder
+            // Handle fetchRecipes
             .addCase(fetchRecipes.pending, (state) => {
                 state.loading = true;
                 state.error = null;
@@ -79,23 +91,38 @@ const recipesSlice = createSlice({
                         page: number;
                         limit: number;
                         total: number;
-                        forMainPage: boolean;
                     }>
                 ) => {
                     state.loading = false;
                     state.error = null;
-                    if (action.payload.forMainPage) {
-                        state.mainPageRecipes = action.payload.recipes;
-                    } else {
-                        state.paginatedRecipes.recipes = action.payload.recipes;
-                        state.paginatedRecipes.page = action.payload.page;
-                        state.paginatedRecipes.limit = action.payload.limit;
-                        state.paginatedRecipes.total = action.payload.total;
-                    }
+                    state.recipes = action.payload.recipes;
+                    state.page = action.payload.page;
+                    state.limit = action.payload.limit;
+                    state.total = action.payload.total;
                 }
             )
             .addCase(
                 fetchRecipes.rejected,
+                (state, action: PayloadAction<string | undefined>) => {
+                    state.loading = false;
+                    state.error = action.payload || "An error occurred";
+                }
+            )
+            // Handle getRecipeByID (new extra reducers)
+            .addCase(getRecipeByID.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(
+                getRecipeByID.fulfilled,
+                (state, action: PayloadAction<IRecipes>) => {
+                    state.loading = false;
+                    state.error = null;
+                    state.recipeByID = action.payload;
+                }
+            )
+            .addCase(
+                getRecipeByID.rejected,
                 (state, action: PayloadAction<string | undefined>) => {
                     state.loading = false;
                     state.error = action.payload || "An error occurred";
