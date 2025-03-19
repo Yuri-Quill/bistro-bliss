@@ -1,0 +1,13 @@
+.our-benefits__card {
+	display: flex;
+	gap: 24px;
+
+	&-image {
+		align-self: start;
+	}
+	&-caption {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+	}
+}
