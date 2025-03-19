@@ -1,0 +1,27 @@
+fieldset {
+	border: none;
+	padding: 20px;
+}
+
+legend {
+	font-size: 1.2em;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.date-input {
+	padding: 10px;
+	margin: 5px 0;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	font-size: 16px;
+	width: 150px;
+	cursor: pointer;
+}
+
+.error {
+	color: red;
+	font-size: 12px;
+	display: block;
+	margin-top: 5px;
+}
