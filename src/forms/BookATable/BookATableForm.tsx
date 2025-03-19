@@ -2,7 +2,7 @@
 import "./BookATableForm.scss";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import TimePicker from "../../Components/TimePicker/TimePicker";
+
 
 const BookATableForm: React.FC = () => {
 	const validationSchema = Yup.object({
@@ -27,10 +27,10 @@ const BookATableForm: React.FC = () => {
 
 						<Field
 							name="time"
-							component={TimePicker}
+							// component={}
 							min="09:00"
 							max="22:00"
-							// format="24h"
+							
 						/>
 						<ErrorMessage name="time" component="span" className="error" />
 					</fieldset>
