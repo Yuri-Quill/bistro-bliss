@@ -57,7 +57,7 @@ const BookATableForm = () => {
 			) => (
 				<Form className="form">
 					{/*Компонент формы с классом для стилей!" */}
-					{error && <h4 className="server-error">{error}</h4>}{" "}
+					{error && <h4 className="server-error">{error}</h4>}
 					{/* Показываем ошибку сервера, если она есть!*/}
 					<div className="form__field-group">
 						{/*Группа полей формы для даты и времени! */}
@@ -71,7 +71,7 @@ const BookATableForm = () => {
 								min={dayjs().format("YYYY-MM-DD")} // Минимальная дата - текущий день!
 							/>
 						</label>
-						<ErrorMessage className="error" name="date" component="span" />{" "}
+						<ErrorMessage className="error-field" name="date" component="span" />
 						{/* Сообщение об ошибке валидации для даты!*/}
 						<label className="form__field-label" htmlFor="time">
 							{/*  Метка для поля времени! Time // Текст метки! */}
@@ -84,7 +84,7 @@ const BookATableForm = () => {
 								max="22:00" // Максимальное время - 22:00!
 							/>
 						</label>
-						<ErrorMessage className="error" name="time" component="span" />{" "}
+						<ErrorMessage className="error-field" name="time" component="span" />
 						{/* Сообщение об ошибке валидации для имени! */}
 					</div>
 					<div className="form__field-group">
@@ -99,7 +99,7 @@ const BookATableForm = () => {
 								placeholder="Put your name" // Подсказка в поле!
 							/>
 						</label>
-						<ErrorMessage className="error" name="name" component="span" />{" "}
+						<ErrorMessage className="error-field" name="name" component="span" />
 						{/* Сообщение об ошибке валидации для имени! */}
 						<label className="form__field-label" htmlFor="phone">
 							{/* Метка для поля телефона! Phone number // Текст метки! */}
@@ -116,7 +116,7 @@ const BookATableForm = () => {
 								
 							/>
 						</label>
-						<ErrorMessage className="error" name="phone" component="span" />{" "}
+						<ErrorMessage className="error-field" name="phone" component="span" />
 						{/* Сообщение об ошибке валидации для имени! */}
 					</div>
 					<div className="form__field-group">
@@ -132,7 +132,7 @@ const BookATableForm = () => {
 								max="10" // Максимальное значение - 10!
 							/>
 						</label>
-						<ErrorMessage className="error" name="totalPerson" component="span" />{" "}
+						<ErrorMessage className="error-field" name="totalPerson" component="span" />
 						{/* Сообщение об ошибке валидации для имени! */}
 					</div>
 					<button
@@ -140,7 +140,7 @@ const BookATableForm = () => {
 						type="submit" // Тип кнопки - отправка формы!
 						disabled={loading || isSubmitting} // Отключаем кнопку при загрузке или отправке!
 					>
-						{loading ? <Loading /> : "Book a Table"}{" "}
+						{loading ? <Loading /> : "Book a Table"}
 						{/* Показываем загрузку или текст в зависимости от состояния!*/}
 					</button>
 				</Form>

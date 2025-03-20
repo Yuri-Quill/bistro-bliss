@@ -1,0 +1,91 @@
+.contact-us-form {
+	background-color: #ffffff94;
+	backdrop-filter: blur(5px);
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	padding: 20px;
+	border-radius: 12px;
+	max-width: 800px;
+	flex-wrap: wrap;
+
+	&__field-group {
+		display: flex;
+		gap: 24px;
+		border: none;
+	}
+
+	&__field-wrapper {
+		display: flex;
+		flex-direction: column;
+		position: relative;
+	}
+
+	&__label {
+		font-weight: 700;
+		margin-bottom: 0.5rem;
+	}
+
+	&__input {
+		border: 1px solid $card-border;
+		background-color: $white-color;
+		padding: 18px 24px;
+		border-radius: 4.5rem;
+
+		&:focus {
+			border-color: $mint-green;
+			box-shadow: $card-box-shadow;
+		}
+
+		&--textarea {
+			padding: 24px;
+			height: 156px;
+			border-radius: 16px;
+			line-height: 1.5;
+			outline: none;
+
+			&::placeholder {
+				text-align: left;
+				color: $date-color;
+				vertical-align: top;
+			}
+		}
+	}
+
+	&__button {
+		color: $white-color;
+		border-radius: 72px;
+		border: 1px solid $card-border;
+		background-color: $background-highlight;
+		padding: 1.25rem 2rem;
+		font-weight: 700;
+		transition: all 0.2s ease;
+
+		&:hover {
+			background-color: color.adjust($lime-green, $lightness: -5%);
+			border: 0.0938rem solid color.adjust($lime-green, $lightness: -5%);
+			color: $white-color;
+			box-shadow: $btn-box-shadow;
+		}
+
+		&:active {
+			transform: scale(0.98);
+			transition: transform 0.1s ease-in-out;
+		}
+	}
+
+	&__error {
+		color: red;
+		font-size: 0.875rem;
+		margin-top: 4px;
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	&__server-error {
+		color: red;
+		margin-bottom: 10px;
+	}
+}
