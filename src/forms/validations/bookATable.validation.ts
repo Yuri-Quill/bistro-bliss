@@ -11,7 +11,8 @@ export const bookingInitialValues = {
 export const bookingValidationSchema = Yup.object({
 	date: Yup.string().required("Date is required"),
 	time: Yup.string().required("Time is required"),
-	phone: Yup.string().required("Phone is required"),
+	phone: Yup.string().min(10).max(12).required("Phone is required"),
+	name: Yup.string().required("Name is required"),
 	totalPerson: Yup.number()
 		.min(1)
 		.max(10)

@@ -36,7 +36,6 @@
 	}
 
 	&-button {
-
 		color: $white-color;
 		border-radius: 72px;
 		border: 1px solid $card-border;
@@ -46,8 +45,8 @@
 		transition: all 0.2s ease;
 
 		&:hover {
-			background-color: color.adjust($lime-green, $lightness: -5%) ;
-			border: 0.0938rem solid color.adjust($lime-green, $lightness: -5%) ;
+			background-color: color.adjust($lime-green, $lightness: -5%);
+			border: 0.0938rem solid color.adjust($lime-green, $lightness: -5%);
 			color: $white-color;
 			box-shadow: $btn-box-shadow;
 		}
@@ -57,4 +56,36 @@
 			transition: transform 0.1s ease-in-out;
 		}
 	}
+}
+
+// Переопределение стилей MuiTelInput
+.MuiTelInput-TextField {
+	.MuiInputBase-root {
+		border-radius: 72px;
+		background-color: $white-color;
+		padding: 8px;
+		padding-top: 8px;
+		// Стили для обводки
+		.MuiOutlinedInput-notchedOutline {
+			border: 1px solid $card-border;
+		}
+
+		// Hover состояние
+		&:hover {
+			.MuiOutlinedInput-notchedOutline {
+				border-color: red;
+			}
+		}
+
+		// Focus состояние
+		&.Mui-focused {
+			.MuiOutlinedInput-notchedOutline {
+				border-color: #6ba124;
+			}
+		}
+	}
+}
+
+.MuiFormControl-root.MuiTelInput-TextField.form-field {
+	margin-top: 8px; // Увеличиваем специфичность
 }
