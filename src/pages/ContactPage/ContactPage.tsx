@@ -3,7 +3,7 @@
 
 const ContactPage = () => {
 	return (
-	<div>Container</div>
+	<div><input type="time" /></div>
 	);
 };
 

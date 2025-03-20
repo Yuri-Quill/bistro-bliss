@@ -1,27 +1,60 @@
-fieldset {
-	border: none;
+.form {
+	background-color: #ffffff94;
+	backdrop-filter: blur(5px);
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 	padding: 20px;
-}
+	border-radius: 12px;
+	max-width: 800px;
 
-legend {
-	font-size: 1.2em;
-	font-weight: bold;
-	margin-bottom: 10px;
-}
+	&__field-group {
+		display: flex;
+		align-items: center;
+		gap: 24px;
+	}
 
-.date-input {
-	padding: 10px;
-	margin: 5px 0;
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	font-size: 16px;
-	width: 150px;
-	cursor: pointer;
-}
+	&__field-label {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		font-weight: 700;
+	}
+	&-field {
+		display: flex;
+		align-items: center;
+		padding: 24px;
 
-.error {
-	color: red;
-	font-size: 12px;
-	display: block;
-	margin-top: 5px;
+		border-radius: 72px;
+		border: 1px solid $card-border;
+		background: $white-color;
+		margin-top: 8px;
+
+		&[placeholder] {
+			color: $date-color;
+		}
+	}
+
+	&-button {
+
+		color: $white-color;
+		border-radius: 72px;
+		border: 1px solid $card-border;
+		background-color: $background-highlight;
+		padding: 1.25rem 2rem;
+		font-weight: 700;
+		transition: all 0.2s ease;
+
+		&:hover {
+			background-color: color.adjust($lime-green, $lightness: -5%) ;
+			border: 0.0938rem solid color.adjust($lime-green, $lightness: -5%) ;
+			color: $white-color;
+			box-shadow: $btn-box-shadow;
+		}
+
+		&:active {
+			transform: scale(0.98);
+			transition: transform 0.1s ease-in-out;
+		}
+	}
 }
