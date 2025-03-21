@@ -1,8 +1,9 @@
-.form {
+.book-table-form {
 	background-color: #ffffff94;
 	backdrop-filter: blur(5px);
 	display: flex;
 	flex-direction: column;
+
 	gap: 20px;
 	padding: 20px;
 	border-radius: 12px;
@@ -12,6 +13,23 @@
 		display: flex;
 		align-items: center;
 		gap: 24px;
+		width: 100%;
+		@media(max-width: 610px){
+			flex-wrap: wrap;
+		}
+	}
+
+	&__field-wrapper {
+		width: 100%;
+		position: relative;
+	}
+
+	&__error-field {
+		color: $text-highlight;
+		position: absolute;
+		top: 0;
+		left: 50%;
+		transform: translateX(-50%);
 	}
 
 	&__field-label {
@@ -19,23 +37,30 @@
 		flex-direction: column;
 		width: 100%;
 		font-weight: 700;
+		margin-bottom: 8px;
 	}
-	&-field {
+	&__field {
 		display: flex;
 		align-items: center;
 		padding: 24px;
-
+		width: 100%;
 		border-radius: 72px;
 		border: 1px solid $card-border;
 		background: $white-color;
-		margin-top: 8px;
 
 		&[placeholder] {
 			color: $date-color;
 		}
+
+		&:focus,
+		&:hover {
+			border-color: $mint-green;
+			box-shadow: $card-box-shadow;
+		}
+		
 	}
 
-	&-button {
+	&__button {
 		color: $white-color;
 		border-radius: 72px;
 		border: 1px solid $card-border;
@@ -73,14 +98,17 @@
 		// Hover состояние
 		&:hover {
 			.MuiOutlinedInput-notchedOutline {
-				border-color: red;
+				border-color: $mint-green;
+				box-shadow: $card-box-shadow;
 			}
 		}
 
 		// Focus состояние
 		&.Mui-focused {
 			.MuiOutlinedInput-notchedOutline {
-				border-color: #6ba124;
+				
+				box-shadow: $card-box-shadow;
+				border: 1px solid $mint-green;
 			}
 		}
 	}

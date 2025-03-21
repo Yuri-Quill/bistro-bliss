@@ -1,152 +1,170 @@
-import { useAppDispatch, useAppSelector } from "../../app/hooks"; // Импортируем хуки Redux для работы с диспетчером и селектором состояния!
-import { Formik, Form, Field, ErrorMessage } from "formik"; // Импортируем компоненты Formik для управления формой!
-import dayjs from "dayjs"; // Импортируем библиотеку Dayjs для работы с датами и временем!
-
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import dayjs from "dayjs";
 import {
 	sendBookingRequest,
 	IBooking,
 	clearBooking,
-} from "../../app/slices/bookATableSlice"; // Импортируем thunk, интерфейс и действие из слайса бронирования!
-
-import Loading from "../../Components/Loading/Loading"; // Импортируем компонент загрузки!
-
+} from "../../app/slices/bookATableSlice";
+import Loading from "../../Components/Loading/Loading";
 import {
 	bookingInitialValues,
 	bookingValidationSchema,
-} from "../validations/bookATable.validation"; // Импортируем начальные значения и схему валидации формы!
-
-import "./BookATableForm.scss"; // Импортируем стили для формы!
+} from "../validations/bookATable.validation";
+import "./BookATableForm.scss";
 import { MuiTelInput } from "mui-tel-input";
-// Компонент формы для бронирования стола!
-const BookATableForm = () => {
-	const dispatch = useAppDispatch(); // Получаем функцию dispatch для отправки действий в Redux!
-	const { loading, error } = useAppSelector((state) => state.booking); // Извлекаем состояние загрузки и ошибки из Redux!
+import Container from "../../Components/Container/Container";
 
-	// Функция для отправки данных бронирования!
+const BookATableForm = () => {
+	const dispatch = useAppDispatch();
+	const { loading, error } = useAppSelector((state) => state.booking);
+
 	const sendBooking = async (
-		values: IBooking, // Данные формы, соответствующие интерфейсу IBooking!
-		setSubmitting: (isSubmitting: boolean) => void, // Функция Formik для управления состоянием отправки!
-		resetForm: () => void // Функция Formik для сброса формы!
+		values: IBooking,
+		setSubmitting: (isSubmitting: boolean) => void,
+		resetForm: () => void
 	) => {
 		try {
-			// Пытаемся отправить запрос!
-			await dispatch(sendBookingRequest(values)).unwrap(); // Отправляем thunk и ждем результата!
-			resetForm(); // Сбрасываем форму после успешной отправки!
-			dispatch(clearBooking()); // Очищаем данные бронирования и ошибки в Redux!
+			await dispatch(sendBookingRequest(values)).unwrap();
+			resetForm();
+			dispatch(clearBooking());
 		} catch (err) {
-			// Ловим ошибки при отправке!
-			console.error("Booking failed:", err); // Выводим ошибку в консоль!
+			console.error("Booking failed:", err);
 		} finally {
-			// Выполняется всегда после попытки!
-			setSubmitting(false); // Отключаем состояние отправки формы!
+			setSubmitting(false);
 		}
 	};
 
-	// Рендерим форму с использованием Formik!
 	return (
 		<Formik
-			initialValues={bookingInitialValues} // Устанавливаем начальные значения формы!
-			validationSchema={bookingValidationSchema} // Устанавливаем схему валидации!
+			initialValues={bookingInitialValues}
+			validationSchema={bookingValidationSchema}
 			onSubmit={(values, { setSubmitting, resetForm }) => {
-				// Обработчик отправки формы!
-				sendBooking(values, setSubmitting, resetForm); // Вызываем функцию отправки!
+				sendBooking(values, setSubmitting, resetForm);
 			}}
 		>
-			{(
-				{ isSubmitting, setFieldValue, values } // Рендерим содержимое формы с доступом к состоянию Formik!
-			) => (
-				<Form className="form">
-					{/*Компонент формы с классом для стилей!" */}
-					{error && <h4 className="server-error">{error}</h4>}
-					{/* Показываем ошибку сервера, если она есть!*/}
-					<div className="form__field-group">
-						{/*Группа полей формы для даты и времени! */}
-						<label className="form__field-label" htmlFor="date">
-							{/* Метка для поля даты! Date // Текст метки!*/}
-							Date
+			{({ isSubmitting, setFieldValue, values }) => (
+			
+				<Form className="book-table-form">
+					{error && <h4 className="book-table-form__server-error">{error}</h4>}
+
+					<div className="book-table-form__field-group">
+						<div className="book-table-form__field-wrapper">
+							<label className="book-table-form__field-label" htmlFor="date">
+								Date
+							</label>
+
 							<Field
-								className="form-field" // Класс стилей для поля!
-								type="date" // Тип поля - дата!
-								name="date" // Имя поля для Formik!
-								min={dayjs().format("YYYY-MM-DD")} // Минимальная дата - текущий день!
+								className="book-table-form__field"
+								type="date"
+								name="date"
+								min={dayjs().format("YYYY-MM-DD")}
 							/>
-						</label>
-						<ErrorMessage className="error-field" name="date" component="span" />
-						{/* Сообщение об ошибке валидации для даты!*/}
-						<label className="form__field-label" htmlFor="time">
-							{/*  Метка для поля времени! Time // Текст метки! */}
-							Time
+
+							<ErrorMessage
+								className="book-table-form__error-field"
+								name="date"
+								component="span"
+							/>
+						</div>
+
+						<div className="book-table-form__field-wrapper">
+							<label className="book-table-form__field-label" htmlFor="time">
+								Time
+							</label>
+
 							<Field
-								className="form-field" // Класс стилей для поля!
-								type="time" // Тип поля - время!
-								name="time" // Имя поля для Formik!
-								min="09:00" // Минимальное время - 09:00!
-								max="22:00" // Максимальное время - 22:00!
+								className="book-table-form__field"
+								type="time"
+								name="time"
+								min="09:00"
+								max="22:00"
 							/>
-						</label>
-						<ErrorMessage className="error-field" name="time" component="span" />
-						{/* Сообщение об ошибке валидации для имени! */}
+
+							<ErrorMessage
+								className="book-table-form__error-field"
+								name="time"
+								component="span"
+							/>
+						</div>
 					</div>
-					<div className="form__field-group">
-						{/* Группа полей для имени и телефона!*/}
-						<label className="form__field-label" htmlFor="name">
-							{/* Метка для поля имени! Name // Текст метки!*/}
-							Name
+
+					<div className="book-table-form__field-group">
+						<div className="book-table-form__field-wrapper">
+							<label className="book-table-form__field-label" htmlFor="name">
+								Name
+							</label>
+
 							<Field
-								className="form-field" // Класс стилей для поля!
-								type="text" // Тип поля - текст!
-								name="name" // Имя поля для Formik!
-								placeholder="Put your name" // Подсказка в поле!
+								className="book-table-form__field"
+								type="text"
+								name="name"
+								placeholder="Put your name"
 							/>
-						</label>
-						<ErrorMessage className="error-field" name="name" component="span" />
-						{/* Сообщение об ошибке валидации для имени! */}
-						<label className="form__field-label" htmlFor="phone">
-							{/* Метка для поля телефона! Phone number // Текст метки! */}
-							Phone number
+
+							<ErrorMessage
+								className="book-table-form__error-field"
+								name="name"
+								component="span"
+							/>
+						</div>
+
+						<div className="book-table-form__field-wrapper">
+							<label className="book-table-form__field-label" htmlFor="phone">
+								Phone number
+							</label>
+
 							<Field
-								className="form-field"
+								className="book-table-form__field"
 								name="phone"
 								component={MuiTelInput}
 								defaultCountry="US"
 								variant="outlined"
 								value={values.phone}
 								fullWidth
-								onChange={(value: string) => setFieldValue("phone", value)} // Важно!
-								
+								onChange={(value: string) => setFieldValue("phone", value)}
 							/>
-						</label>
-						<ErrorMessage className="error-field" name="phone" component="span" />
-						{/* Сообщение об ошибке валидации для имени! */}
+
+							<ErrorMessage
+								className="book-table-form__error-field"
+								name="phone"
+								component="span"
+							/>
+						</div>
 					</div>
-					<div className="form__field-group">
-						{/* Группа полей для имени и телефона!*/}
-						<label className="form__field-label" htmlFor="totalPerson">
-							{/* * Метка для поля количества человек! Total person // Текст метки! */}
+
+					<div className="book-table-form__field-wrapper">
+						<label className="book-table-form__field-label" htmlFor="totalPerson">
 							Total person
-							<Field
-								className="form-field" // Класс стилей для поля!
-								type="number" // Тип поля - число!
-								name="totalPerson" // Имя поля для Formik!
-								min="1" // Минимальное значение - 1!
-								max="10" // Максимальное значение - 10!
-							/>
 						</label>
-						<ErrorMessage className="error-field" name="totalPerson" component="span" />
-						{/* Сообщение об ошибке валидации для имени! */}
+
+						<Field
+							className="book-table-form__field"
+							type="number"
+							name="totalPerson"
+							min="1"
+							max="10"
+						/>
+
+						<ErrorMessage
+							className="book-table-form__error-field"
+							name="totalPerson"
+							component="span"
+						/>
 					</div>
+
 					<button
-						className="form-button" // Класс стилей для кнопки!
-						type="submit" // Тип кнопки - отправка формы!
-						disabled={loading || isSubmitting} // Отключаем кнопку при загрузке или отправке!
+						className="book-table-form__button"
+						type="submit"
+						disabled={loading || isSubmitting}
 					>
 						{loading ? <Loading /> : "Book a Table"}
-						{/* Показываем загрузку или текст в зависимости от состояния!*/}
 					</button>
 				</Form>
+				
 			)}
 		</Formik>
 	);
 };
 
-export default BookATableForm; // Экспортируем компонент формы по умолчанию!
+export default BookATableForm;

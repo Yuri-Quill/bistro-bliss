@@ -102,7 +102,7 @@ const ContactUsForm = () => {
 						</label>
 						<Field
 							className="contact-us-form__input contact-us-form__input--textarea"
-							required
+							
 							name="message"
 							placeholder="Message"
                             as="textarea"
