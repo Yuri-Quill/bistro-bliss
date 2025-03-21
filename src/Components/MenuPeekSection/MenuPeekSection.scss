@@ -1,10 +1,14 @@
 .menu-peek {
 	&__section {
 		text-align: center;
+
 	}
+
+
 
 	&__title {
 		margin-bottom: clamp(1.875rem, 1.253rem + 3.317vw, 4rem);
+		
 	}
 
 	&__list {
