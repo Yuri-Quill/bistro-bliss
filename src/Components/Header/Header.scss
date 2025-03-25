@@ -1,5 +1,8 @@
 .header {
 	padding: 1.5625rem 0;
+	@media(max-width: 59.375rem) {
+		display: none;
+	}
 
 	& > .container {
 		@include df-space-between;
