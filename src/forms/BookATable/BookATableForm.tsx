@@ -14,7 +14,7 @@ import {
 import "./BookATableForm.scss";
 import { MuiTelInput } from "mui-tel-input";
 import { toast, ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 import { useNavigate } from "react-router-dom";
 
 const BookATableForm = () => {
