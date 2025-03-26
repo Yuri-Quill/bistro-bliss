@@ -1,13 +1,14 @@
 import { getMenu, getMenuByCategory } from "../../app/slices/menuSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useSearchParams, NavLink } from "react-router-dom";
 import Container from "../../Components/Container/Container";
 import Loading from "../../Components/Loading/Loading";
 import {
 	IMenuInterface,
 	IMenuItemInterface,
 } from "../../shared/interfaces/menu.interface";
+import "./MenuPage.scss";
 
 const MenuPage = () => {
 	const dispatch = useAppDispatch();
@@ -18,11 +19,13 @@ const MenuPage = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const currentCategory = searchParams.get("category");
 
-	// Типизация категорий как ключей IMenuInterface
+	const [currentPage, setCurrentPage] = useState(1);
+	const itemsPerPage = 5;
+
 	const categories = menu
 		? (Object.keys(menu).filter((key) => !["_id", "__v"].includes(key)) as Array<
 				keyof IMenuInterface
-		>)
+		  >)
 		: [];
 
 	useEffect(() => {
@@ -31,6 +34,7 @@ const MenuPage = () => {
 		} else {
 			dispatch(getMenuByCategory(currentCategory));
 		}
+		setCurrentPage(1);
 	}, [dispatch, currentCategory]);
 
 	const handleGetAllMenu = () => {
@@ -38,83 +42,131 @@ const MenuPage = () => {
 		dispatch(getMenu());
 	};
 
-	const handleCategoryClick = (category: keyof IMenuInterface) => {
-		setSearchParams({ category });
-		dispatch(getMenuByCategory(category));
-	};
-
-	// Отображение всех блюд из всех категорий
 	const renderAllMenu = () => {
 		if (!menu) return null;
+
+		const allItems = categories
+			.flatMap((category) => {
+				const items = menu[category];
+				return Array.isArray(items) ? items : [];
+			})
+			.filter(Boolean);
+
+		const totalItems = allItems.length;
+		const totalPages = Math.ceil(totalItems / itemsPerPage);
+		const startIndex = (currentPage - 1) * itemsPerPage;
+		const paginatedItems = allItems.slice(startIndex, startIndex + itemsPerPage);
+
 		return (
 			<>
-				{categories.map((category) => {
-					const items = menu[category];
-					// Проверяем, что items — это массив
-					if (!Array.isArray(items)) return null;
-					return (
-						<div key={category}>
-							<h2>{category.charAt(0).toUpperCase() + category.slice(1)}</h2>
-							<ul>
-								{items.map((item: IMenuItemInterface) => (
-									<li key={item._id}>
-										{item.name} - {item.price} руб.
-									</li>
-								))}
-							</ul>
-						</div>
-					);
-				})}
+				<ul className="menu-page__list">
+					{paginatedItems.map((item: IMenuItemInterface) => (
+						<li key={item._id} className="menu-page__item">
+							{item.name} - {item.price} руб.
+						</li>
+					))}
+				</ul>
+				{renderPagination(totalPages)}
 			</>
 		);
 	};
 
-	// Отображение блюд текущей категории
 	const renderCategoryMenu = () => {
 		if (!menuCategory) return null;
+
+		const totalItems = menuCategory.length;
+		const totalPages = Math.ceil(totalItems / itemsPerPage);
+		const startIndex = (currentPage - 1) * itemsPerPage;
+		const paginatedItems = menuCategory.slice(
+			startIndex,
+			startIndex + itemsPerPage
+		);
+
 		return (
-			<ul>
-				{menuCategory.map((item: IMenuItemInterface) => (
-					<li key={item._id}>
-						{item.name} - {item.price} руб.
-					</li>
-				))}
-			</ul>
+			<>
+				<ul className="menu-page__list">
+					{paginatedItems.map((item: IMenuItemInterface) => (
+						<li key={item._id} className="menu-page__item">
+							{item.name} - {item.price} руб.
+						</li>
+					))}
+				</ul>
+				{renderPagination(totalPages)}
+			</>
+		);
+	};
+
+	const renderPagination = (totalPages: number) => {
+		if (totalPages <= 1) return null;
+
+		return (
+			<div className="menu-page__pagination">
+				<button
+					onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+					disabled={currentPage === 1}
+					className="menu-page__pagination-btn"
+				>
+					Предыдущая
+				</button>
+				<span className="menu-page__pagination-info">
+					Страница {currentPage} из {totalPages}
+				</span>
+				<button
+					onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+					disabled={currentPage === totalPages}
+					className="menu-page__pagination-btn"
+				>
+					Следующая
+				</button>
+			</div>
 		);
 	};
 
 	return (
 		<Container>
-			<h1>Меню ресторана</h1>
+			<h1 className="menu-page__title">Меню ресторана</h1>
 
-			<div style={{ marginBottom: "20px" }}>
-				<button
+			<nav className="menu-page__nav">
+				<NavLink
+					to="/menu"
 					onClick={handleGetAllMenu}
-					style={{ marginRight: "10px" }}
-					disabled={loading || !currentCategory}
+					className={({ isActive }) =>
+						`menu-page__nav-link ${
+							isActive && !currentCategory ? "menu-page__nav-link--active" : ""
+						}`
+					}
 				>
 					Показать всё меню
-				</button>
+				</NavLink>
 				{categories.map((category) => (
-					<button
+					<NavLink
 						key={category}
-						onClick={() => handleCategoryClick(category)}
-						style={{ marginRight: "10px" }}
-						disabled={loading || currentCategory === category}
+						to={`/menu?category=${category}`}
+						onClick={() => {
+							setSearchParams({ category });
+							dispatch(getMenuByCategory(category));
+						}}
+						className={({ isActive }) =>
+							`menu-page__nav-link ${
+								isActive && currentCategory === category
+									? "menu-page__nav-link--active"
+									: ""
+							}`
+						}
 					>
 						{category.charAt(0).toUpperCase() + category.slice(1)}
-					</button>
+					</NavLink>
 				))}
-			</div>
+			</nav>
 
 			{loading && <Loading />}
-			{error && <p>Ошибка: {error}</p>}
+			{error && <p className="menu-page__error">Ошибка: {error}</p>}
 
 			{!loading && !error && (
-				<>
+				<div className="menu-page__content">
 					{currentCategory ? (
 						<>
-							<h2>
+							<h2 className="menu-page__subtitle">
 								{currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1)}
 							</h2>
 							{renderCategoryMenu()}
@@ -122,7 +174,7 @@ const MenuPage = () => {
 					) : (
 						renderAllMenu()
 					)}
-				</>
+				</div>
 			)}
 		</Container>
 	);

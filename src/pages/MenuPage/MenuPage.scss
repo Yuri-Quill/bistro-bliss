@@ -1,0 +1,116 @@
+
+.menu-page {
+	&__title {
+		font-size: 2rem;
+		color: $text-heading; // #2c2f24
+		margin-bottom: 20px;
+	}
+
+	&__nav {
+		display: flex;
+		gap: 10px;
+		margin-bottom: 20px;
+		flex-wrap: wrap;
+	}
+
+	&__nav-link {
+		padding: 10px 15px;
+		text-decoration: none;
+		color: $text-default; // #414536
+		border: 1px solid $btn-dark-border; // #2c2f24
+		border-radius: 5px;
+		background-color: $card-background; // #dbdfd0
+		transition: all 0.3s ease;
+
+		&:hover {
+			background-color: $background-hover; // #dbdfd0 (можно заменить на более тёмный оттенок)
+			color: $text-highlight; // #ad343e
+		}
+
+		&--active {
+			background-color: $background-highlight; // #ad343e
+			color: $text-light; // #f9f9f7
+			border-color: $background-highlight; // #ad343e
+		}
+
+		&[aria-disabled="true"] {
+			color: $text-subtext; // #495460
+			border-color: $text-subtext; // #495460
+			background-color: $background-dark-gray; // #474747
+			pointer-events: none;
+		}
+	}
+
+	&__subtitle {
+		font-size: 1.5rem;
+		color: $text-heading; // #2c2f24
+		margin-bottom: 15px;
+	}
+
+	&__list {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 20px 0;
+		background-color: $background-section; // #f9f9f7
+		border-radius: 5px;
+	}
+
+	&__item {
+		padding: 10px;
+		border-bottom: 1px solid $card-border; // #dbdfd0
+		color: $text-default; // #414536
+
+		&:last-child {
+			border-bottom: none;
+		}
+	}
+
+	&__error {
+		color: $pomegranate; // #d83b3d
+		margin: 20px 0;
+	}
+
+	&__content {
+		min-height: 300px;
+		background-color: $background-section; // #f9f9f7
+		padding: 20px;
+		border-radius: 5px;
+		box-shadow: $card-box-shadow; // 0 4px 6px rgba(0, 0, 0, 0.05)
+	}
+
+	&__pagination {
+		display: flex;
+		align-items: center;
+		gap: 15px;
+		justify-content: center;
+		margin-top: 20px;
+	}
+
+	&__pagination-btn {
+		padding: 8px 12px;
+		background-color: $btn-dark; // #182226
+		color: $text-light; // #f9f9f7
+		border: 1px solid $btn-dark-border; // #2c2f24
+		border-radius: 5px;
+		cursor: pointer;
+		box-shadow: $btn-box-shadow; // 0 4px 6px rgba(0, 0, 0, 0.1)
+		transition: background-color 0.3s ease;
+
+		&:hover:not(:disabled) {
+			background-color: $forest-green; // #2e8b57 (зелёный для hover)
+		}
+
+		&:disabled {
+			background-color: $background-dark-gray; // #474747
+			color: $text-subtext; // #495460
+			border-color: $text-subtext; // #495460
+			cursor: not-allowed;
+			box-shadow: none;
+		}
+	}
+
+	&__pagination-info {
+		color: $text-dark-gray; // #474747
+		font-size: 1rem;
+	}
+}
