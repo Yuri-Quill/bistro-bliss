@@ -6,11 +6,11 @@
 		gap: 25px;
 	}
 	&__title {
-		font-size: clamp(2.5rem, 1.449rem + 5.797vw, 6.25rem);
+		font-size: clamp(2.5rem, 1.749rem + 5.797vw, 6.25rem);
 		line-height: 96px; /* 96% */
 	}
 	&__text {
-		font-size: clamp(1.563rem, 1.685rem + -0.676vw, 1.125rem);
+		font-size: clamp(1rem, 1.685rem + -0.676vw, 1.125rem);
 		text-align: center;
 		line-height: 155.556%; /* 155.556% */
 		color: $text-subtext;
@@ -19,9 +19,29 @@
 
 	&__nav {
 		margin-bottom: 20px;
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		
 		&-list {
 			display: flex;
+			justify-content: center;
 			gap: 15px;
+
+			@media (max-width: 778px) {
+				flex-wrap: wrap;
+				width: 100%;
+			}
+
+			&-item {
+				display: flex;
+				@media (max-width: 336px) {
+					width: 100%;
+					& > a {
+						width: 100%;
+					}
+				}
+			}
 
 			&-link {
 				padding: 8px 20px;
@@ -52,7 +72,7 @@
 		flex: 1 1 290px;
 	}
 
-	&__pagination{
+	&__pagination {
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -60,7 +80,7 @@
 		margin-top: 30px;
 		padding: 10px 0;
 
-		&-button{
+		&-button {
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -74,13 +94,13 @@
 			transition: all 0.3s ease;
 			color: $text-default; // #414536 -
 			box-shadow: $btn-box-shadow;
-	
+
 			&:hover:not(:disabled) {
 				background-color: color.adjust($background-hover, $lightness: 20%);
 				border-color: #0000002f;
 				color: color.adjust($lime-green, $lightness: 10%);
 			}
-	
+
 			&:disabled {
 				opacity: 0.5;
 				cursor: not-allowed;
@@ -88,7 +108,7 @@
 				border-color: $card-border;
 				color: $text-subtext;
 			}
-	
+
 			svg {
 				width: 16px;
 				height: 16px;
@@ -97,7 +117,7 @@
 
 		&-info {
 			@include playfair-display;
-			min-width: 120px; 
+			min-width: 120px;
 			text-align: center;
 			font-size: 25px;
 			font-weight: 500;
