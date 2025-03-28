@@ -35,6 +35,11 @@
 		font-weight: 700;
 		line-height: 130%;
 		color: $text-heading;
+		display: -webkit-box;
+		-webkit-line-clamp: 1;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		line-clamp: 1;
 	}
 	&__ingredients {
 		color: $text-default;

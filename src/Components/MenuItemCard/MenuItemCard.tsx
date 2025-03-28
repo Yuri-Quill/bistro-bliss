@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./MenuItemCard.scss";
 import { IMenuItemInterface } from "../../shared/interfaces/menu.interface";
-import NoImage  from '../../assets/no-img.jpg'
+import NoImage from "../../assets/no-img.jpg";
 interface IMenuItemCardProps {
 	data: IMenuItemInterface;
 	categories: string | null;
@@ -21,6 +21,7 @@ const MenuItemCard = ({ data, categories }: IMenuItemCardProps) => {
 					alt={`Picture of ${data.name}`}
 					width={306}
 					height={230}
+					loading="lazy"
 				/>
 				<figcaption className="menu-card__caption">
 					<span className="menu-card__price">{`$ ${data.price}`}</span>

@@ -12,7 +12,9 @@ const RecipeDetailPage = lazy(
 );
 const ContactUsPage = lazy(() => import("./pages/ContactUsPage/ContactUsPage"));
 const BookingPage = lazy(() => import("./pages/BookingPage/BookingPage"));
-
+const MenuDetailPage = lazy(
+	() => import("./pages/MenuDetailPage/MenuDetailPage")
+);
 const ErrorPage = lazy(() => import("./pages/ErrorPage/ErrorPage"));
 
 const router = createBrowserRouter([
@@ -50,6 +52,7 @@ const router = createBrowserRouter([
 				path: "/book-a-table",
 				element: <BookingPage />,
 			},
+			{ path: "/menu/:categories/:id", element: <MenuDetailPage /> },
 		],
 	},
 ]);

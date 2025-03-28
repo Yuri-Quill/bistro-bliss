@@ -1,0 +1,99 @@
+.menu-detail {
+	padding: 40px 0;
+	& > .container {
+		display: flex;
+
+		flex-direction: column;
+	}
+	&__figure {
+		display: flex;
+		align-items: center;
+		gap: 30px;
+
+		@media(max-width: 807px){
+			flex-direction: column;
+			width: 100%;
+		}
+	}
+
+	&__image {
+		width: 500px;
+		height: 500px;
+		border-radius: 50%;
+		object-fit: cover;
+		box-shadow: 0 0 20px rgba(0, 0, 0, 0.425);
+		@media(max-width: 807px) {
+			border-radius: 20px;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			filter: brightness(0.9) contrast(1.1);
+		}
+	}
+
+	&__title {
+		font-size: clamp(2.5rem, 1.8rem + 3.865vw, 5rem);
+		color: #474747;
+		margin-bottom: 30px;
+		text-align: center;
+	}
+	&__caption {
+		display: flex;
+		flex-direction: column;
+		@media(max-width: 807px){
+			
+		}
+	}
+	&__subtitle {
+		@include playfair-display;
+		font-weight: 500;
+		letter-spacing: 3%;
+		font-size: clamp(1.125rem, 1.09rem + 0.193vw, 1.25rem);
+		margin-bottom: 10px;
+	}
+
+	&__subtext {
+		@include dm-sans;
+		font-size: 18px;
+		color: #474747;
+
+		&--price {
+			color: $text-highlight;
+			font-weight: 700;
+			font-size: 20px;
+		}
+	}
+
+	&__alcohol {
+		color: $text-highlight;
+		font-weight: 700;
+		&--active {
+			color: $lime-green;
+		}
+	}
+	&__list {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		margin-bottom: 10px;
+		list-style-type: disc;
+		padding-left: 20px;
+
+		&-item {
+			font-size: 18px;
+			color: #474747;
+
+			&::marker {
+				color: $text-highlight;
+				font-size: 1.2em;
+			}
+		}
+	}
+
+	&__alcohol {
+		color: $text-highlight;
+		&--active {
+			color: rgb(55, 146, 85);
+		}
+	}
+}

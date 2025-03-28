@@ -27,9 +27,12 @@
 	&__error-field {
 		color: $text-highlight;
 		position: absolute;
-		top: 0;
+		bottom: -24px;
 		left: 50%;
 		transform: translateX(-50%);
+		width: 100%;
+		text-align: center;
+
 	}
 
 	&__field-label {
