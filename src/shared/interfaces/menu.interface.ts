@@ -20,3 +20,7 @@ export interface IMenuInterface {
 	appetizers: IMenuItemInterface[];
 	__v: number;
 }
+// export interface IMenuInterface {
+
+// 	[key: string]: IMenuItemInterface[];
+// }

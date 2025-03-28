@@ -1,12 +1,10 @@
-import { getMenu} from "../../app/slices/menuSlice";
+import { getMenu } from "../../app/slices/menuSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { useEffect, useState } from "react";
 import { useSearchParams, NavLink } from "react-router-dom";
 import Container from "../../Components/Container/Container";
 import Loading from "../../Components/Loading/Loading";
-import {
-	IMenuItemInterface,
-} from "../../shared/interfaces/menu.interface";
+import { IMenuItemInterface } from "../../shared/interfaces/menu.interface";
 import "./MenuPage.scss";
 
 const MenuPage = () => {
@@ -14,13 +12,16 @@ const MenuPage = () => {
 	const { menu, loading, error } = useAppSelector((state) => state.menu);
 
 	const [searchParams, setSearchParams] = useSearchParams();
+	const [currentPage, setCurrentPage] = useState(1);
+
 	const currentCategory = searchParams.get("category");
+	const itemsPerPage = 8;
 
 	useEffect(() => {
 		if (!menu && !loading) {
 			dispatch(getMenu());
 		}
-		// setCurrentPage(1);
+		setCurrentPage(1);
 	}, [dispatch, currentCategory, menu, loading]);
 
 	const menuCategories = menu
@@ -43,10 +44,25 @@ const MenuPage = () => {
 			.filter((item): item is IMenuItemInterface => Boolean(item));
 	};
 
+	const getPaginatedItems = () => {
+		const totalItems = menuItems.length;
+		const totalPages = Math.ceil(totalItems / itemsPerPage);
+		const startIndex = (currentPage - 1) * itemsPerPage;
+		return {
+			paginatedItems: menuItems.slice(startIndex, startIndex + itemsPerPage),
+			totalPages,
+		};
+	};
+
 	const menuItems = getMenuItemsByCategory();
-	console.log("Menu Items:", menuItems);
+	const { paginatedItems, totalPages } = getPaginatedItems();
 
-
+	const handlePrevPage = () => {
+		setCurrentPage((prev) => Math.max(prev - 1, 1));
+	};
+	const handleNextPage = () => {
+		setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+	};
 
 	return (
 		<section className="menu">
@@ -56,12 +72,17 @@ const MenuPage = () => {
 					We consider all the drivers of change gives you the components you need to
 					change to create a truly happens.
 				</p>
-        
+
 				<nav className="menu__nav">
 					<ul className="menu__nav-list">
+						<li className="menu__list-item">
+							<NavLink className="menu__list-link" to={"/menu"}>
+								All
+							</NavLink>
+						</li>
 						{menuCategories.map((category, index) => (
-							<li key={index}>
-								<NavLink to={`/menu?category=${category}`}>
+							<li className="menu__nav-list-item" key={index}>
+								<NavLink className="menu__list-link" to={`/menu?category=${category}`}>
 									{category.charAt(0).toUpperCase() + category.slice(1)}
 								</NavLink>
 							</li>
@@ -70,16 +91,30 @@ const MenuPage = () => {
 				</nav>
 
 				<ul className="menu__items-list">
-					{menuItems.map((item: IMenuItemInterface, index: number) => (
+					{paginatedItems.map((item: IMenuItemInterface, index: number) => (
 						<li key={index}>
 							<img src={item.picture} alt="" />
 						</li>
 					))}
 				</ul>
 
-				<div className="menu__pagenetio">
-					<button>{"<"}</button>
-					<button>{">"}</button>
+				<div className="menu__pagination">
+					<button
+						className="menu__pagination-button"
+						onClick={handlePrevPage}
+						type="button"
+						disabled={currentPage === 1}
+					>
+						{"<"}
+					</button>
+					<button
+						className="menu__pagination-button"
+						onClick={handleNextPage}
+						type="button"
+						disabled={currentPage === totalPages}
+					>
+						{">"}
+					</button>
 				</div>
 			</Container>
 		</section>
