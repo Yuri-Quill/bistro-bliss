@@ -10,7 +10,7 @@ import {
 } from "../../shared/interfaces/menu.interface";
 
 import MenuItemCard from "../../Components/MenuItemCard/MenuItemCard";
-
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import "./MenuPage.scss";
 
 type MenuCategory = keyof Omit<IMenuInterface, "_id" | "__v">;
@@ -159,10 +159,10 @@ const MenuPage = () => {
 								type="button"
 								disabled={currentPage === 1}
 							>
-								{"<"}
+								<FaChevronLeft/>
 							</button>
 							<span className="menu__pagination-info">
-								{currentPage} / {totalPages}
+							Page	{currentPage} of {totalPages}
 							</span>
 							<button
 								className="menu__pagination-button"
@@ -170,7 +170,7 @@ const MenuPage = () => {
 								type="button"
 								disabled={currentPage === totalPages}
 							>
-								{">"}
+								<FaChevronRight/>
 							</button>
 						</div>
 					</>
