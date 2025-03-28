@@ -20,7 +20,7 @@ const MenuPage = () => {
 	const currentCategory = searchParams.get("category");
 
 	const [currentPage, setCurrentPage] = useState(1);
-	const itemsPerPage = 5;
+	const itemsPerPage = 8;
 
 	const categories = menu
 		? (Object.keys(menu).filter((key) => !["_id", "__v"].includes(key)) as Array<
@@ -42,6 +42,23 @@ const MenuPage = () => {
 		dispatch(getMenu());
 	};
 
+	const truncateIngredients = (ingredients: string[]) => {
+		const joined = ingredients.join(", ");
+		const lines = joined.split(" ").reduce(
+			(acc, word) => {
+				const lastLine = acc[acc.length - 1];
+				if ((lastLine + " " + word).length > 40 && acc.length < 2) {
+					acc.push(word);
+				} else {
+					acc[acc.length - 1] = lastLine ? `${lastLine} ${word}` : word;
+				}
+				return acc;
+			},
+			[""]
+		);
+		return lines.length > 2 ? `${lines[0]} ${lines[1]}...` : joined;
+	};
+
 	const renderAllMenu = () => {
 		if (!menu) return null;
 
@@ -58,16 +75,25 @@ const MenuPage = () => {
 		const paginatedItems = allItems.slice(startIndex, startIndex + itemsPerPage);
 
 		return (
-			<>
-				<ul className="menu-page__list">
-					{paginatedItems.map((item: IMenuItemInterface) => (
-						<li key={item._id} className="menu-page__item">
-							{item.name} - {item.price} руб.
-						</li>
-					))}
-				</ul>
+			<div className="menu-page__grid">
+				{paginatedItems.map((item: IMenuItemInterface) => (
+					<div key={item._id} className="menu-page__card">
+						<img
+							src={item.picture}
+							alt={item.name}
+							className="menu-page__card-image"
+						/>
+						<div className="menu-page__card-content">
+							<h3 className="menu-page__card-title">{item.name}</h3>
+							<p className="menu-page__card-ingredients">
+								{truncateIngredients(item.ingredients)}
+							</p>
+							<p className="menu-page__card-price">${item.price}</p>
+						</div>
+					</div>
+				))}
 				{renderPagination(totalPages)}
-			</>
+			</div>
 		);
 	};
 
@@ -83,16 +109,25 @@ const MenuPage = () => {
 		);
 
 		return (
-			<>
-				<ul className="menu-page__list">
-					{paginatedItems.map((item: IMenuItemInterface) => (
-						<li key={item._id} className="menu-page__item">
-							{item.name} - {item.price} руб.
-						</li>
-					))}
-				</ul>
+			<div className="menu-page__grid">
+				{paginatedItems.map((item: IMenuItemInterface) => (
+					<div key={item._id} className="menu-page__card">
+						<img
+							src={item.picture}
+							alt={item.name}
+							className="menu-page__card-image"
+						/>
+						<div className="menu-page__card-content">
+							<h3 className="menu-page__card-title">{item.name}</h3>
+							<p className="menu-page__card-ingredients">
+								{truncateIngredients(item.ingredients)}
+							</p>
+							<p className="menu-page__card-price">${item.price}</p>
+						</div>
+					</div>
+				))}
 				{renderPagination(totalPages)}
-			</>
+			</div>
 		);
 	};
 
@@ -104,19 +139,19 @@ const MenuPage = () => {
 				<button
 					onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
 					disabled={currentPage === 1}
-					className="menu-page__pagination-btn"
+					className="menu-page__pagination-btn menu-page__pagination-btn--prev"
 				>
-					Предыдущая
+					&lt;
 				</button>
 				<span className="menu-page__pagination-info">
-					Страница {currentPage} из {totalPages}
+					{currentPage} / {totalPages}
 				</span>
 				<button
 					onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
 					disabled={currentPage === totalPages}
-					className="menu-page__pagination-btn"
+					className="menu-page__pagination-btn menu-page__pagination-btn--next"
 				>
-					Следующая
+					&gt;
 				</button>
 			</div>
 		);
