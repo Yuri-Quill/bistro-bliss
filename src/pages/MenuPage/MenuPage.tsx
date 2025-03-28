@@ -1,23 +1,20 @@
 import { getMenu } from "../../app/slices/menuSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { useEffect, useState } from "react";
-import { useSearchParams, NavLink, useLocation } from "react-router-dom";
+import { useSearchParams, NavLink } from "react-router-dom";
+
 import Container from "../../Components/Container/Container";
 import Loading from "../../Components/Loading/Loading";
-import {
-	IMenuItemInterface,
-	IMenuInterface,
-} from "../../shared/interfaces/menu.interface";
-
 import MenuItemCard from "../../Components/MenuItemCard/MenuItemCard";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import "./MenuPage.scss";
 
-type MenuCategory = keyof Omit<IMenuInterface, "_id" | "__v">;
+import { IMenuItemInterface } from "../../shared/interfaces/menu.interface";
+
+import "./MenuPage.scss";
 
 const MenuPage = () => {
 	const dispatch = useAppDispatch();
-	const { menu, loading, error } = useAppSelector((state) => state.menu);
+	const { categories, loading, error } = useAppSelector((state) => state.menu);
 
 	const [searchParams, setSearchParams] = useSearchParams();
 	const currentCategory = searchParams.get("category");
@@ -29,60 +26,43 @@ const MenuPage = () => {
 		return isNaN(pageNum) || pageNum < 1 ? 1 : pageNum;
 	});
 
-	const location = useLocation();
-	const currentSearchParams = new URLSearchParams(location.search);
-	const activeCategory = currentSearchParams.get("category") || "";
- 
 	useEffect(() => {
-		if (!menu && !loading) {
+		if (categories.length === 0 && !loading) {
 			dispatch(getMenu());
 		}
-	}, [dispatch, menu, loading]);
+	}, [dispatch, categories, loading]);
 
-	// Синхронизируем URL с порядком category → page
+	// Синхронизация URL с текущей страницей и категорией
 	useEffect(() => {
 		const params = new URLSearchParams();
 		if (currentCategory) {
-			params.set("category", currentCategory); // Сначала category
+			params.set("category", currentCategory);
 		}
-		params.set("page", currentPage.toString()); // Затем page
+		params.set("page", currentPage.toString());
 		setSearchParams(params, { replace: true });
 	}, [currentPage, currentCategory, setSearchParams]);
 
-	const menuCategories: MenuCategory[] = menu
-		? (Object.keys(menu).filter(
-				(category) => !["_id", "__v"].includes(category)
-		  ) as MenuCategory[])
-		: [];
 
-	console.log("Categories:", menuCategories);
 
-	const getMenuItemsByCategory = () => {
-		if (!menu) return [];
-		if (
-			currentCategory &&
-			menuCategories.includes(currentCategory as MenuCategory)
-		) {
-			return menu[currentCategory as MenuCategory].filter(
-				(item): item is IMenuItemInterface => Boolean(item)
-			);
+	// Получение элементов для отображения
+	const getMenuItems = (): IMenuItemInterface[] => {
+		if (!categories.length) return [];
+		if (currentCategory) {
+			const category = categories.find((cat) => cat.category === currentCategory);
+			return category ? category.items : [];
 		}
-		return menuCategories
-			.flatMap((category) => (Array.isArray(menu[category]) ? menu[category] : []))
-			.filter((item): item is IMenuItemInterface => Boolean(item));
+		return categories.flatMap((cat) => cat.items); // Все элементы из всех категорий
 	};
 
-	const menuItems = getMenuItemsByCategory();
+	const menuItems = getMenuItems();
 
+	// Пагинация
 	const getPaginatedItems = () => {
 		const totalItems = menuItems.length;
 		const totalPages = Math.ceil(totalItems / itemsPerPage);
 		const startIndex = (currentPage - 1) * itemsPerPage;
 		const paginatedItems = menuItems.slice(startIndex, startIndex + itemsPerPage);
-		return {
-			paginatedItems,
-			totalPages,
-		};
+		return { paginatedItems, totalPages };
 	};
 
 	const { paginatedItems, totalPages } = getPaginatedItems();
@@ -94,6 +74,8 @@ const MenuPage = () => {
 	const handleNextPage = () => {
 		setCurrentPage((prev) => Math.min(prev + 1, totalPages));
 	};
+
+
 
 	return (
 		<section className="menu">
@@ -109,29 +91,21 @@ const MenuPage = () => {
 					<ul className="menu__nav-list">
 						<li className="menu__nav-list-item">
 							<NavLink
-								className={() =>
-									activeCategory === ""
-										? "menu__nav-list-link menu__nav-list-link--active"
-										: "menu__nav-list-link"
-								}
+								className="menu__nav-list-link"
 								to="/menu?page=1"
-								end
+							
 							>
 								All
 							</NavLink>
 						</li>
-						{menuCategories.map((category) => (
-							<li className="menu__nav-list-item" key={category}>
+						{categories.map((cat) => (
+							<li className="menu__nav-list-item" key={cat.category}>
 								<NavLink
-									className={() =>
-										activeCategory === category
-											? "menu__nav-list-link menu__nav-list-link--active"
-											: "menu__nav-list-link"
-									}
-									to={`/menu?category=${category}&page=1`}
-									end
+									className="menu__nav-list-link"
+									to={`/menu?category=${cat.category}&page=1`}
+								
 								>
-									{category.charAt(0).toUpperCase() + category.slice(1)}
+									{cat.category.charAt(0).toUpperCase() + cat.category.slice(1)}
 								</NavLink>
 							</li>
 						))}
@@ -145,34 +119,40 @@ const MenuPage = () => {
 				) : (
 					<>
 						<ul className="menu__items-list">
-							{paginatedItems.map((item: IMenuItemInterface) => (
-								<li key={item._id} className="menu__item">
-									<MenuItemCard data={item} categories={currentCategory} />
-								</li>
-							))}
+							{paginatedItems.length > 0 ? (
+								paginatedItems.map((item: IMenuItemInterface) => (
+									<li key={item._id} className="menu__item">
+										<MenuItemCard data={item} categories={currentCategory || "all"} />
+									</li>
+								))
+							) : (
+								<p>No items available</p>
+							)}
 						</ul>
 
-						<div className="menu__pagination">
-							<button
-								className="menu__pagination-button"
-								onClick={handlePrevPage}
-								type="button"
-								disabled={currentPage === 1}
-							>
-								<FaChevronLeft/>
-							</button>
-							<span className="menu__pagination-info">
-							Page	{currentPage} of {totalPages}
-							</span>
-							<button
-								className="menu__pagination-button"
-								onClick={handleNextPage}
-								type="button"
-								disabled={currentPage === totalPages}
-							>
-								<FaChevronRight/>
-							</button>
-						</div>
+						{totalPages > 1 && (
+							<div className="menu__pagination">
+								<button
+									className="menu__pagination-button"
+									onClick={handlePrevPage}
+									type="button"
+									disabled={currentPage === 1}
+								>
+									<FaChevronLeft />
+								</button>
+								<span className="menu__pagination-info">
+									Page {currentPage} of {totalPages}
+								</span>
+								<button
+									className="menu__pagination-button"
+									onClick={handleNextPage}
+									type="button"
+									disabled={currentPage === totalPages}
+								>
+									<FaChevronRight />
+								</button>
+							</div>
+						)}
 					</>
 				)}
 			</Container>

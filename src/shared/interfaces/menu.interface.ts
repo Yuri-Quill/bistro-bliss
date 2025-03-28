@@ -10,19 +10,14 @@ export interface IMenuItemInterface {
 	alcohol_content?: boolean;
 }
 
+export interface IMenuCategory {
+	category: string; // "meat", "vegetarian", и т.д.
+	items: IMenuItemInterface[];
+}
 
-// export interface IMenuInterface {
-// 	[key: string]: IMenuItemInterface[];
-// }
-
-
-export interface IMenuInterface {
-	_id: string;
-	vegetarian: IMenuItemInterface[];
-	meat: IMenuItemInterface[];
-	fish: IMenuItemInterface[];
-	desserts: IMenuItemInterface[];
-	drinks: IMenuItemInterface[];
-	appetizers: IMenuItemInterface[];
-	__v: number;
+export interface IMenuState {
+	categories: IMenuCategory[];
+	loading: boolean;
+	error: string | null;
+	selectedItem: IMenuItemInterface | null;
 }

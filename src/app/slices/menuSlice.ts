@@ -1,52 +1,56 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
 import {
-	IMenuInterface,
 	IMenuItemInterface,
+	IMenuCategory,
+	IMenuState,
 } from "../../shared/interfaces/menu.interface";
 
 const URL = "https://quill-server-fksr.onrender.com/api/menu";
 
-interface IMenuState {
-	menu: IMenuInterface | null; // Весь объект меню
-	menuItem: IMenuItemInterface | null; // Отдельный элемент меню
-	menuCategory: IMenuItemInterface[] | null; // Массив блюд из одной категории
-	loading: boolean;
-	error: string | null;
-}
- 
+// Обновлённое состояние: добавляем поле selectedItem для конкретного элемента
 const initialState: IMenuState = {
-	menu: null,
-	menuItem: null,
-	menuCategory: null, // Добавлено для хранения данных категории
+	categories: [], // Массив категорий
 	loading: false,
 	error: null,
+	selectedItem: null, // Выбранный элемент (опционально)
 };
 
 // Получение всего меню
 export const getMenu = createAsyncThunk<
-	IMenuInterface,
+	IMenuCategory[], // Тип возвращаемого значения
 	void,
 	{ rejectValue: string }
 >("menu/fetchMenu", async (_, { rejectWithValue }) => {
 	try {
 		const { data } = await axios.get(URL);
-		return data[0]; // Предполагается, что сервер возвращает массив с одним объектом
+		const rawMenu = data[0]; // Получаем массив с одним объектом
+	
+		// Преобразуем объект в массив категорий
+		const categories: IMenuCategory[] = Object.keys(rawMenu)
+			.filter((key) => !["_id", "__v"].includes(key)) // Убираем служебные поля
+			.map((category) => ({
+				category, // Название категории ("meat", "vegetarian", и т.д.)
+				items: rawMenu[category].filter((item: IMenuItemInterface) =>
+					Boolean(item)
+				), // Фильтруем элементы
+			}));
+
+		return categories;
 	} catch (error: unknown) {
 		if (error instanceof Error) {
 			return rejectWithValue(error.message);
 		}
-		return rejectWithValue("Неизвестная ошибка при получении меню!");
+		return rejectWithValue("Unknown error occurred while fetching menu!");
 	}
 });
 
 // Получение конкретного элемента по ID и категории
 export const getMenuItemById = createAsyncThunk<
-	IMenuItemInterface,
-	{ id: string; category: string },
+	IMenuItemInterface, // Тип возвращаемого значения
+	{ id: string; category: string }, // Аргументы
 	{ rejectValue: string }
->("menu/getMenuItemById", async ({ id, category }, { rejectWithValue }) => {
+>("menu/getMenuItemById", async ({ category, id}, { rejectWithValue }) => {
 	try {
 		const { data } = await axios.get(`${URL}/${category}/${id}`);
 		return data;
@@ -54,24 +58,7 @@ export const getMenuItemById = createAsyncThunk<
 		if (error instanceof Error) {
 			return rejectWithValue(error.message);
 		}
-		return rejectWithValue("Неизвестная ошибка при получении элемента меню!");
-	}
-});
-
-// Новый thunk для получения всех блюд из категории
-export const getMenuByCategory = createAsyncThunk<
-	IMenuItemInterface[],
-	string, // Категория передаётся как строка
-	{ rejectValue: string }
->("menu/fetchMenuByCategory", async (category, { rejectWithValue }) => {
-	try {
-		const { data } = await axios.get(`${URL}/${category}`);
-		return data; // Ожидаем массив блюд
-	} catch (error: unknown) {
-		if (error instanceof Error) {
-			return rejectWithValue(error.message);
-		}
-		return rejectWithValue("Неизвестная ошибка при получении категории меню!");
+		return rejectWithValue("Unknown error occurred while fetching menu item!");
 	}
 });
 
@@ -89,21 +76,20 @@ const menuSlice = createSlice({
 			})
 			.addCase(
 				getMenu.fulfilled,
-				(state, action: PayloadAction<IMenuInterface>) => {
+				(state, action: PayloadAction<IMenuCategory[]>) => {
 					state.loading = false;
 					state.error = null;
-					state.menu = action.payload;
+					state.categories = action.payload; // Сохраняем массив категорий
 				}
 			)
 			.addCase(
 				getMenu.rejected,
 				(state, action: PayloadAction<string | undefined>) => {
 					state.loading = false;
-					state.error = action.payload || "Произошла ошибка";
+					state.error = action.payload || "Oops something went wrong";
 				}
 			)
-
-			// Обработка запроса конкретного блюда
+			// Обработка запроса конкретного элемента
 			.addCase(getMenuItemById.pending, (state) => {
 				state.loading = true;
 				state.error = null;
@@ -113,35 +99,14 @@ const menuSlice = createSlice({
 				(state, action: PayloadAction<IMenuItemInterface>) => {
 					state.loading = false;
 					state.error = null;
-					state.menuItem = action.payload;
+					state.selectedItem = action.payload; // Сохраняем выбранный элемент
 				}
 			)
 			.addCase(
 				getMenuItemById.rejected,
 				(state, action: PayloadAction<string | undefined>) => {
 					state.loading = false;
-					state.error = action.payload || "Произошла ошибка";
-				}
-			)
-
-			// Обработка запроса всех блюд из категории
-			.addCase(getMenuByCategory.pending, (state) => {
-				state.loading = true;
-				state.error = null;
-			})
-			.addCase(
-				getMenuByCategory.fulfilled,
-				(state, action: PayloadAction<IMenuItemInterface[]>) => {
-					state.loading = false;
-					state.error = null;
-					state.menuCategory = action.payload;
-				}
-			)
-			.addCase(
-				getMenuByCategory.rejected,
-				(state, action: PayloadAction<string | undefined>) => {
-					state.loading = false;
-					state.error = action.payload || "Произошла ошибка";
+					state.error = action.payload || "Oops something went wrong";
 				}
 			);
 	},
