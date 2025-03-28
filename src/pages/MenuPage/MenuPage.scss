@@ -2,7 +2,41 @@
 	& > .container {
 		@include df-full-center;
 		flex-direction: column;
-		gap: 24px;
+		gap: 25px;
+	}
+	&__title {
+		font-size: clamp(2.5rem, 1.449rem + 5.797vw, 6.25rem);
+		line-height: 96px; /* 96% */
+	}
+	&__text {
+		font-size: clamp(1.563rem, 1.685rem + -0.676vw, 1.125rem);
+		text-align: center;
+		line-height: 155.556%; /* 155.556% */
+		color: $text-subtext;
+		margin-bottom: 25px;
+	}
 
+	&__nav {
+		&-list {
+			display: flex;
+			gap: 15px;
+
+			&-link {
+				padding: 8px 20px;
+				font-weight: 700;
+				border-radius: 50px;
+				border: 1px solid $card-border;
+				color: $text-heading;
+				
+				
+				
+				&--active {
+					background-color: $background-highlight;
+					color: $white-color;
+					border-color: $background-highlight;
+				}
+			}
+		}
 	}
 }
+
