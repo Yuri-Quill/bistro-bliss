@@ -10,6 +10,12 @@ export interface IMenuItemInterface {
 	alcohol_content?: boolean;
 }
 
+
+// export interface IMenuInterface {
+// 	[key: string]: IMenuItemInterface[];
+// }
+
+
 export interface IMenuInterface {
 	_id: string;
 	vegetarian: IMenuItemInterface[];
@@ -20,7 +26,3 @@ export interface IMenuInterface {
 	appetizers: IMenuItemInterface[];
 	__v: number;
 }
-// export interface IMenuInterface {
-
-// 	[key: string]: IMenuItemInterface[];
-// }
