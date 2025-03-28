@@ -1,11 +1,12 @@
 import { getMenu } from "../../app/slices/menuSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { useEffect } from "react";
-import { useSearchParams, NavLink, useNavigate } from "react-router-dom";
+import { useSearchParams, NavLink } from "react-router-dom";
 
 import Container from "../../Components/Container/Container";
 import Loading from "../../Components/Loading/Loading";
 import MenuItemCard from "../../Components/MenuItemCard/MenuItemCard";
+import MenuDropdown from "../../Components/MenuDropdown/MenuDropdown";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 import { IMenuItemInterface } from "../../shared/interfaces/menu.interface";
@@ -14,7 +15,7 @@ import "./MenuPage.scss";
 
 const MenuPage = () => {
 	const dispatch = useAppDispatch();
-	const navigate = useNavigate();
+
 	const { categories, loading, error } = useAppSelector((state) => state.menu);
 
 	const [searchParams, setSearchParams] = useSearchParams();
@@ -124,7 +125,11 @@ const MenuPage = () => {
 									</li>
 								))}
 							</ul>
-							
+							<MenuDropdown
+								categories={categories}
+								currentCategory={currentCategory}
+								currentPage={currentPage}
+							/>
 						</nav>
 
 						<ul className="menu__items-list">
