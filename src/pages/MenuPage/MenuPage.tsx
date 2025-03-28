@@ -32,7 +32,7 @@ const MenuPage = () => {
 	const location = useLocation();
 	const currentSearchParams = new URLSearchParams(location.search);
 	const activeCategory = currentSearchParams.get("category") || "";
-
+ 
 	useEffect(() => {
 		if (!menu && !loading) {
 			dispatch(getMenu());
