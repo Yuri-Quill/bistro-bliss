@@ -1,0 +1,2 @@
+import{x as s,j as e,L as a}from"./index-BHBgYMPU.js";const t=()=>{const r=s();return e.jsxs("section",{className:"error-page",children:[e.jsx("h1",{className:"error-page__title",children:"Oops! Something went wrong"}),e.jsxs("h4",{className:"error-page__status",children:["Error ",r.status]}),e.jsx("p",{className:"error-page__message",children:r.statusText||r.message}),e.jsx(a,{to:"/",className:"error-page__home-link",children:"Return to Home"})]})};export{t as default};
+//# sourceMappingURL=ErrorPage-Cn2v17Zs.js.map
