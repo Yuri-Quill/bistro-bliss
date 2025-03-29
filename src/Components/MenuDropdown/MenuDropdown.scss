@@ -46,13 +46,13 @@
 
 		// Hover-эффект
 		&:hover {
-			background: lighten(#333, 10%);
+			background: color.adjust(#333, $lightness: 10%);
 			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 		}
 
 		// Focus-эффект
 		&:focus {
-			background: lighten(#333, 10%);
+			background: color.adjust(#333, $lightness: 10%);
 			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 		}
 	}

@@ -1,8 +1,12 @@
 import { useRouteError, Link } from "react-router-dom";
 
-import IErrorPage from "../../shared/interfaces/errorPage.interface";
-
 import "./ErrorPage.scss";
+
+interface IErrorPage {
+	status: number;
+	statusText: string;
+	message: string;
+}
 
 const ErrorPage = () => {
 	const error = useRouteError() as IErrorPage;
