@@ -9,6 +9,7 @@
 		display: flex;
 		align-items: center;
 		gap: 30px;
+		margin-bottom: 30px;
 
 		@media(max-width: 807px){
 			flex-direction: column;
@@ -95,5 +96,9 @@
 		&--active {
 			color: rgb(55, 146, 85);
 		}
+	}
+
+	&__link{
+		align-self: center;
 	}
 }
