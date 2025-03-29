@@ -7,20 +7,20 @@ import IMenuPeek from "../interfaces/menu-peek.interface";
 
 const menuPeekData: IMenuPeek[] = [
 	{
-		name: "Breakfast",
+		name: "Appetizers",
 		body:
-			"Indulge in our delicious breakfast options, from fluffy pancakes to savory omelets.",
+			"Indulge in our delicious appetizers options, from fluffy pancakes to savory omelets.",
 		image: Breakfast,
-		description: "Breakfast menu",
-		href: "/menu/breakfast",
+		description: "Appetizers menu",
+		href: "/menu?category=appetizers&page=1",
 	},
 	{
-		name: "Main Dishes",
+		name: "Meat Dishes",
 		body:
-			"Our menu features a variety of mouth-watering dishes, from classic burgers to gourmet salads.",
+			"Our menu features a variety of mouth-watering dishes, from classic burgers to gourmet stakes.",
 		image: MainDishes,
 		description: "Main dishes menu",
-		href: "/menu/main-dishes",
+		href: "/menu?category=meat&page=1",
 	},
 	{
 		name: "Drinks",
@@ -28,7 +28,7 @@ const menuPeekData: IMenuPeek[] = [
 			"Quench your thirst with our refreshing drinks, from coffee to cocktails.",
 		image: Drinks,
 		description: "Drinks menu",
-		href: "/menu/drinks",
+		href: "/menu?category=drinks&page=1",
 	},
 	{
 		name: "Desserts",
@@ -36,7 +36,7 @@ const menuPeekData: IMenuPeek[] = [
 			"Satisfy your sweet tooth with our decadent desserts, from classic cakes to innovative treats.",
 		image: Desserts,
 		description: "Desserts menu",
-		href: "/menu/desserts",
+		href: "/menu?category=desserts&page=1",
 	},
 ];
 
