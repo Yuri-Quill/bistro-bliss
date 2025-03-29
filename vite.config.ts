@@ -1,14 +1,14 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import * as path from "node:path";
-import mkcert from "vite-plugin-mkcert"; // Прямой импорт
 
 export default defineConfig({
-	plugins: [react(), mkcert()], // Добавляем mkcert
-	server: {
-		host: "localhost", // Хост
-		port: 5173, // Порт
-		 // Включаем HTTPS (опционально, но полезно для явности)
+	plugins: [react()], // Только React-плагин, mkcert не нужен для продакшена
+	base: "/", // Базовый путь для Vercel
+	resolve: {
+		alias: {
+			"@": path.resolve("src"), // Алиас для src
+		},
 	},
 	css: {
 		preprocessorOptions: {
@@ -21,9 +21,8 @@ export default defineConfig({
 			},
 		},
 	},
-	resolve: {
-		alias: {
-			"@": path.resolve("src"),
-		},
+	build: {
+		outDir: "dist", // Папка сборки
+		sourcemap: true, // Опционально для дебаггинга
 	},
 });
