@@ -1,5 +1,5 @@
 import { BsTelephone, BsEnvelope, BsMap } from "react-icons/bs";
-import IContacts from "../interfaces/contacts.interface";
+import IContacts from "../interfaces/contacts.interface.ts";
 
 const contactsData: IContacts[] = [
 	{
