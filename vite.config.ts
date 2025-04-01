@@ -24,5 +24,12 @@ export default defineConfig({
 	build: {
 		outDir: "dist", // Папка сборки
 		sourcemap: true, // Опционально для дебаггинга
+		rollupOptions: {
+			output: {
+				manualChunks: {
+					vendor: ['react', 'react-dom', 'react-router-dom'],
+				},
+			},
+		},
 	},
 });
