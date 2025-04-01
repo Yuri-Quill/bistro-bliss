@@ -1,2 +1,0 @@
-import{j as r}from"./index-DcgVXLls.js";import{j as s,L as a}from"./vendor-C_CdKm9A.js";const n=()=>{const e=s();return r.jsxs("section",{className:"error-page",children:[r.jsx("h1",{className:"error-page__title",children:"Oops! Something went wrong"}),r.jsxs("h4",{className:"error-page__status",children:["Error ",e.status]}),r.jsx("p",{className:"error-page__message",children:e.statusText||e.message}),r.jsx(a,{to:"/",className:"error-page__home-link",children:"Return to Home"})]})};export{n as default};
-//# sourceMappingURL=ErrorPage-xDEx4zVG.js.map
