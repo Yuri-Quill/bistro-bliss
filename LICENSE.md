@@ -32,8 +32,7 @@ Copyright (c) 2024 Bistro Bliss
 
 ### 6. Contact
 For commercial license purchase and support:
-- Email: support@bistro-bliss.com
-- Telegram: @bistro_bliss_support
+- Email: quill.devs@proton.me
 
 ### 7. License Changes
 - 🔄 We reserve the right to modify license terms
@@ -41,3 +40,4 @@ For commercial license purchase and support:
 
 ---
 
+Last updated: April 1, 2024 
