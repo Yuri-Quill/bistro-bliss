@@ -1,50 +1,71 @@
-# React + TypeScript + Vite
+# 🍽️ Bistro Bliss - Modern Restaurant Web Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 🚀 Technology Stack
 
-Currently, two official plugins are available:
+### Frontend Framework
+- ⚛️ React 18.3
+- 📘 TypeScript
+- ⚡ Vite 6.2
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Styling
+- 🎨 SASS/SCSS
+- 📱 Responsive Design
+- 🎯 Material UI Components
 
-## Expanding the ESLint configuration
+### State Management
+- 🔄 Redux Toolkit
+- 🔌 React Redux
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Routing
+- 🛣️ React Router DOM v7
 
-- Configure the top-level `parserOptions` property like this:
+### Forms and Validation
+- 📝 Formik
+- ✅ Yup
+- 📱 MUI Tel Input
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### Additional Features
+- 🎥 React Player for video content
+- 🔔 React Toastify for notifications
+- 📅 Day.js for date handling
+- 🌐 Axios for HTTP requests
+
+## 📁 Project Structure
+
+```
+src/
+├── app/          # Core application logic
+├── assets/       # Static resources
+├── Components/   # Reusable components
+├── forms/        # Forms and validation
+├── helpers/      # Helper functions
+├── Layouts/      # Page layouts
+├── pages/        # Application pages
+└── shared/       # Shared components and utilities
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## 🛠️ Development
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+### Running the Project
+```bash
+npm run dev     # Run in development mode
+npm run build   # Build the project
+npm run lint    # Code linting
+npm run preview # Preview build
 ```
+
+## 🔍 Features
+- 🎯 TypeScript typing
+- 📱 Responsive design
+- 🚀 Fast development with Vite
+- 🎨 Modern UI/UX
+- 🔒 Form security and validation
+- 📊 Efficient state management with Redux
+
+## 🌟 Advantages
+1. Modern technology stack
+2. Optimized performance
+3. Scalable architecture
+4. User-friendly interface
+5. Reliable validation system
+6. Efficient state management
