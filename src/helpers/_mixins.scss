@@ -1,0 +1,46 @@
+@use "./variables" as *;
+
+// ! Fonts
+
+@mixin dm-sans($weight: 400, $size: 1rem) {
+	font-family: "DM Sans", serif;
+	font-size: $size;
+	font-weight: $weight;
+}
+
+@mixin playfair-display($weight: 400, $style: normal, $size: 1 rem) {
+	font-family: "Playfair Display", serif;
+	font-weight: $weight;
+	font-style: $style;
+	font-size: $size;
+}
+
+
+// ! Display Options
+
+@mixin df-full-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+@mixin df-space-between {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+@mixin df-align-center {
+	display: flex;
+	align-items: center;
+}
+
+
+// ! Effects 
+
+@mixin backdrop-glass-blur {
+	backdrop-filter: blur(10px); 
+	background-color: rgba(64, 64, 64, 0.5); 
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+}

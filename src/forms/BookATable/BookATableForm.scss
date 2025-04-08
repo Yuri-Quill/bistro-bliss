@@ -1,0 +1,139 @@
+.book-table-form {
+	background-color: #ffffff94;
+	backdrop-filter: blur(5px);
+	display: flex;
+	flex-direction: column;
+
+	gap: 20px;
+	padding: 20px;
+	border-radius: 12px;
+	max-width: 800px;
+
+	&__field-group {
+		display: flex;
+		align-items: center;
+		gap: 24px;
+		width: 100%;
+		@media (max-width: 610px) {
+			flex-wrap: wrap;
+		}
+	}
+
+	&__field-wrapper {
+		width: 100%;
+		position: relative;
+	}
+
+	&__error-field {
+		color: $text-highlight;
+		position: absolute;
+		bottom: -24px;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 100%;
+		text-align: center;
+
+	}
+
+	&__field-label {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		font-weight: 700;
+		margin-bottom: 8px;
+	}
+	&__field {
+		display: flex;
+		align-items: center;
+		padding: 24px;
+		width: 100%;
+		border-radius: 72px;
+		border: 1px solid $card-border;
+		background: $white-color;
+		&:disabled {
+			background-color: #f5f5f5;
+			opacity: 0.7;
+			cursor: not-allowed;
+		}
+		&[placeholder] {
+			color: $date-color;
+		}
+
+		&:focus,
+		&:hover {
+			border-color: $mint-green;
+			box-shadow: $card-box-shadow;
+		}
+	}
+
+	&__button {
+		color: $white-color;
+		border-radius: 72px;
+		border: 1px solid $card-border;
+		background-color: $background-highlight;
+		padding: 1.25rem 2rem;
+		font-weight: 700;
+		transition: all 0.2s ease;
+		&:disabled {
+			opacity: 0.6;
+			cursor: not-allowed;
+			&:hover {
+				background-color: $background-highlight;
+				border: 1px solid $card-border;
+				box-shadow: none;
+			}
+		}
+		&:hover {
+			background-color: color.adjust($lime-green, $lightness: -5%);
+			border: 0.0938rem solid color.adjust($lime-green, $lightness: -5%);
+			color: $white-color;
+			box-shadow: $btn-box-shadow;
+		}
+
+		&:active {
+			transform: scale(0.98);
+			transition: transform 0.1s ease-in-out;
+		}
+	}
+}
+
+// Переопределение стилей MuiTelInput
+.MuiTelInput-TextField {
+	.MuiInputBase-root {
+		border-radius: 72px;
+		background-color: $white-color;
+		padding: 8px;
+		padding-top: 8px;
+		// Стили для обводки
+		.MuiOutlinedInput-notchedOutline {
+			border: 1px solid $card-border;
+		}
+		&.Mui-disabled {
+			.MuiOutlinedInput-notchedOutline {
+				border: 1px solid $card-border;
+			}
+			background-color: #f5f5f5;
+			opacity: 0.7;
+		}
+
+		// Hover состояние
+		&:hover {
+			.MuiOutlinedInput-notchedOutline {
+				border-color: $mint-green;
+				box-shadow: $card-box-shadow;
+			}
+		}
+
+		// Focus состояние
+		&.Mui-focused {
+			.MuiOutlinedInput-notchedOutline {
+				box-shadow: $card-box-shadow;
+				border: 1px solid $mint-green;
+			}
+		}
+	}
+}
+
+.MuiFormControl-root.MuiTelInput-TextField.form-field {
+	margin-top: 8px; // Увеличиваем специфичность
+}

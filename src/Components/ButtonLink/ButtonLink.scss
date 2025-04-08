@@ -1,0 +1,36 @@
+.button-link {
+	display: inline-block;
+	color: $btn-dark;
+	border-radius: 7.375rem;
+	border: 0.0938rem solid $btn-dark-border;
+	background-color: $white-color;
+	padding: 1.25rem 2rem;
+	font-weight: 700;
+	transition: all 0.2s ease;
+
+	&:hover {
+		background-color: $background-highlight;
+		border: 0.0938rem solid $background-highlight;
+		color: $white-color;
+		box-shadow: $btn-box-shadow;
+	}
+
+	&:active,
+	&--active:active {
+		transform: scale(0.98);
+		transition: transform 0.1s ease-in-out;
+	}
+
+	&--active {
+		color: $white-color;
+		border-radius: 7.375rem;
+		border: 0.0938rem solid $background-highlight;
+		background-color: $background-highlight;
+
+		&:hover {
+			background-color: color.adjust($forest-green, $lightness: 10%);
+			border: 0.0938rem solid color.adjust($forest-green, $lightness: 10%);
+			box-shadow: $btn-box-shadow;
+		}
+	}
+}

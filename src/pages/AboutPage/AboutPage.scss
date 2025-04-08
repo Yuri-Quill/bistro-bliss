@@ -1,0 +1,8 @@
+.about-page__meet-us {
+	margin-bottom: 0;
+	& > .container .meet-us__info {
+		&-btn {
+			display: none;
+		}
+	}
+}

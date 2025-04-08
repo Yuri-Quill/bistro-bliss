@@ -1,0 +1,50 @@
+.feel-the-taste {
+	position: relative;
+	width: 100%;
+	margin-bottom: clamp(2.5rem, 1.8rem + 3.865vw, 5rem);
+
+	&__video {
+		width: 100%;
+		height: 43.75rem;
+		object-fit: cover;
+		cursor: pointer;
+	}
+
+	&__content {
+		@include df-full-center;
+		flex-direction: column;
+		width: 100%;
+		height: 100%;
+
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		text-align: center;
+		padding: 0 0.9375rem;
+		opacity: 1;
+		visibility: visible;
+		transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+
+		&--active {
+			opacity: 0;
+			visibility: hidden;
+			pointer-events: none;
+		}
+	}
+
+	&__title {
+		max-width: 596px;
+		color: $white-color;
+	}
+
+	&__button {
+		margin-bottom: clamp(1.25rem, 1.005rem + 1.353vw, 2.125rem);
+		width: clamp(3.75rem, 2.944rem + 4.444vw, 6.625rem);
+		transition: scale 0.3s ease-in-out;
+
+		&:active {
+			transform: scale(0.98);
+		}
+	}
+}

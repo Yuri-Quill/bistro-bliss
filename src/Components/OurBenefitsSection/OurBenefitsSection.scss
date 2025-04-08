@@ -1,0 +1,22 @@
+.our-benefits {
+	margin-bottom: clamp(2.5rem, 1.537rem + 5.314vw, 5.938rem);
+
+	&__list {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		gap: 20px;
+		@media (max-width: 940px) {
+			justify-content: center;
+		}
+	}
+
+	&__item {
+		flex: 0 1 320px;
+		@media (max-width: 1026px) {
+			display: flex;
+			justify-content: center;
+			flex: 1 1 290px;
+		}
+	}
+}

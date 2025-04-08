@@ -1,0 +1,64 @@
+.feedback-card {
+	display: flex;
+	flex-direction: column;
+
+	padding: 45px 35px 35px 35px;
+	background-color: $background-section;
+	border-radius: 0.75rem;
+	height: 100%;
+
+    
+
+	&__title {
+		display: block;
+		font-size: clamp(1.25rem, 1.18rem + 0.386vw, 1.5rem);
+		font-weight: 700;
+		line-height: 125%;
+		letter-spacing: -0.045rem;
+
+		color: $text-highlight;
+		margin-bottom: clamp(1.125rem, 1.02rem + 0.58vw, 1.5rem);
+	}
+
+	&__text {
+        display: flex;
+        flex-grow: 1;
+		color: $text-default;
+		font-size: clamp(1rem, 0.965rem + 0.193vw, 1.125rem);
+		line-height: 155.556%;
+		padding-bottom: clamp(1.5rem, 1.36rem + 0.773vw, 2rem);
+
+		border-bottom: 1px solid $card-border;
+		margin-bottom: clamp(1.5rem, 1.36rem + 0.773vw, 2rem);
+	}
+
+	&__figure {
+		display: flex;
+		align-items: center;
+		gap: 20px;
+		margin-top: auto;
+	}
+
+	&__image {
+		border-radius: 50%;
+		object-fit: cover;
+		width: clamp(3.75rem, 3.575rem + 0.966vw, 4.375rem);
+		height: clamp(3.75rem, 3.575rem + 0.966vw, 4.375rem);
+	}
+
+	&__caption {
+		display: flex;
+		flex-direction: column;
+		gap: 3px;
+
+		&-title {
+			font-size: clamp(0.875rem, 0.84rem + 0.193vw, 1rem);
+			font-weight: 700;
+		}
+
+		&-address {
+			color: $text-default;
+			font-size: clamp(0.75rem, 0.68rem + 0.386vw, 1rem);
+		}
+	}
+}

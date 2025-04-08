@@ -1,0 +1,85 @@
+.about-us {
+	background-color: $background-section;
+	padding-top: clamp(2.5rem, 1.099rem + 7.729vw, 7.5rem);
+	padding-bottom: clamp(2.5rem, 1.449rem + 5.797vw, 6.25rem);
+	margin-bottom: clamp(2.5rem, 1.484rem + 5.604vw, 6.125rem);
+
+	& > .container {
+		@include df-space-between;
+		gap: 1.5rem;
+		@media (max-width: 75.75rem) {
+			flex-wrap: wrap;
+			justify-content: center;
+		}
+	}
+
+	&__content {
+		max-width: 610px;
+
+		@media (max-width: 75.75rem) {
+			width: 100%;
+			max-width: 100%;
+			@include df-align-center;
+			flex-direction: column;
+			text-align: center;
+		}
+	}
+	&__title {
+		max-width: 540px;
+		margin-bottom: 20px;
+
+		@media (max-width: 75.75rem) {
+			width: 100%;
+		}
+	}
+	&__text {
+		max-width: 540px;
+		margin-bottom: clamp(1.25rem, 0.55rem + 3.865vw, 3.75rem);
+		color: $text-default;
+	}
+	&__list {
+		display: flex;
+		gap: clamp(1rem, 0.86rem + 0.773vw, 1.5rem);
+		flex-wrap: wrap;
+
+		@media (max-width: 75.75rem) {
+			width: 100%;
+		}
+	}
+	&__item {
+		@include df-full-center;
+		flex-direction: column;
+
+		gap: 0.9375rem;
+
+		flex: 1 1 290px;
+
+		border: 1px solid $card-border;
+		background-color: $white-color;
+		border-radius: 0.5rem;
+		padding: 1.875rem 3.75rem 2.5rem 3.75rem;
+
+		box-shadow: $card-box-shadow;
+
+		&-title {
+			@include playfair-display;
+			font-size: clamp(2.813rem, 2.637rem + 0.966vw, 3.438rem);
+			font-weight: 500;
+			line-height: 110%;
+		}
+
+		&-text {
+			color: $text-default;
+			font-size: clamp(1rem, 0.965rem + 0.193vw, 1.125rem);
+			font-weight: 500;
+			line-height: 155.556%;
+		}
+	}
+
+	&__image {
+		border-radius: 12px;
+		@media (max-width: 75.75rem) {
+			display: none;
+		}
+	}
+}

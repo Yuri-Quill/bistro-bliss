@@ -1,0 +1,29 @@
+.services {
+	margin-bottom: clamp(2.5rem, 1.037rem + 7.805vw, 7.5rem);
+
+& > .container {
+    @media (max-width: 938px) {
+        text-align: center;
+        @include df-full-center;
+        flex-direction: column;
+
+    }
+}
+
+	&__title {
+		max-width: 40.625rem;
+		margin-bottom: 3.5625rem;
+
+
+	}
+
+	&__list {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 20px;
+	}
+
+	&__item {
+		flex: 1 1 290px;
+	}
+}

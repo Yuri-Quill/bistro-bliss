@@ -1,0 +1,41 @@
+.menu-peek__card {
+	height: 100%;
+
+	@include df-full-center;
+	text-align: center;
+	flex-direction: column;
+	gap: 30px;
+
+	border-radius: 12px;
+	border: 1.5px solid $card-border;
+	background: $white-color;
+	padding: 40px 34px 32px 34px;
+
+
+	&-title {
+		font-size: 1.5rem;
+		font-weight: 700;
+		line-height: 125%;
+		letter-spacing: -0.045rem;
+		margin-bottom: 0.9375rem;
+	}
+
+	&-text {
+		color: $text-default;
+	}
+
+	&-link {
+		color: $text-highlight;
+		font-weight: 700;
+		transition: all 0.2s ease-in-out;
+		margin-top: auto;
+
+		&:hover {
+			color: $lime-green;
+		}
+
+		&:active {
+			transform: scale(0.98);
+		}
+	}
+}

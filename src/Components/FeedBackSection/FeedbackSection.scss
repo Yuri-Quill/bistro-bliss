@@ -1,0 +1,19 @@
+.feedback {
+
+	margin-bottom: clamp(2.5rem, 0.836rem + 9.179vw, 8.438rem);
+
+	&__title {
+		margin-bottom: clamp(2.5rem, 2.08rem + 2.319vw, 4rem);
+		text-align: center;
+	}
+
+	&__list {
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: clamp(0.938rem, 0.78rem + 0.87vw, 1.5rem);
+	}
+	&__item {
+		flex: 1 1 290px;
+	}
+}
